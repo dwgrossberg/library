@@ -1,2 +1,4 @@
 # library
-A simple library app built to practice working with object constructors and prototypal inheritance 
+A simple library app built to practice working with object constructors, prototypal inheritance, and local storage
+
+
