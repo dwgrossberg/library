@@ -27,13 +27,18 @@
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
     display: grid;
-    grid-template: clamp(40vh, calc(700px - 30vw), 60vh) 1fr / 1fr;
+    grid-template: clamp(250px, calc(700px - 30vw), 60vh) 1fr / 1fr;
 
 }
 
 .help {
     grid-area: 1 / 1 / 2 / 2;
     border: forestgreen dotted 1px;
+}
+
+.help p {
+    font-family: "Pacifico", cursive;
+    font-size: 24px;
 }
 
 .librarian {
@@ -63,6 +68,21 @@
     grid-template: 2fr repeat(3, 1fr) 2fr;
 }
 
-.library-row {
+.book-shelf {
     outline: darkcyan dotted 1px;
+}
+
+.row-two {
+    display: grid;
+    grid-template: 20% 80% / repeat(20, 1fr);
+}
+
+.book {
+    grid-row-start: 2;
+    border: 1px solid black;
+}
+
+.row-two .one {
+    height: 70%;
+    background-color: aquamarine ;
 }
