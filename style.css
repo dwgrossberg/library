@@ -98,32 +98,44 @@
 
 .book {
     border: 1px solid black;
-    max-width: 30%;
-    min-width: 5%;
+    position: relative;
+    max-width: 40%;
+    min-width: 20%;
     max-height: 90%;
     min-height: 50%;
+
 }
- 
+
+.book > p {
+    position: absolute;
+    font-family: "Lato", sans-serif;
+    font-size: clamp(.25rem, 9px, 1rem);
+    
+    
+    
+    
+    
+}
+
 /* book width formula -  pg length / 100 * 3 [generic multiplier] (for example 345pg book = 3.45% * 2) */
-    /* limited between 5-15% */
+    /* limited between 10-30% */
 /* book height formula - pg length / 10 * 50% [limited height bandwith for books] (for example 345pg book = ((34.5 * 50%) + 50%) */
     /* limited between 50-100% */
 
 .book-one { 
-    /* sample book length 765pg */
-    width: calc(7.65% * 3);
-    height: calc(38.25% + 50%);
+    width: 35%;
+    height: 80%;
     background-color: aquamarine;
 }
 
 .book-two {
-    width: 15%;
+    width: 25%;
     height: 60%;
     background-color: aqua;
 }
 
 .book-three {
-    width: 10%;
-    height: 73%;
+    width: 25%;
+    height: 100%;
     background-color: plum;
 }
