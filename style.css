@@ -73,16 +73,34 @@
 }
 
 .row-two {
-    display: grid;
-    grid-template: 20% 80% / repeat(20, 1fr);
+    display: flex;
+    align-items: flex-end;
 }
 
 .book {
-    grid-row-start: 2;
     border: 1px solid black;
+    max-width: 15%;
+    min-width: 5%;
+    max-height: 90%;
+    min-height: 50%;
+}
+ 
+/* book width formula -  pg length / 100 * 2 [generic multiplier] (for example 345pg book = 3.45% * 2) */
+    /* limited between 5-15% */
+/* book height formula - pg length / 10 * 45 [limited height bandwith for books] (for example 345pg book = ((34.5 * 50%) + 50%) */
+    /* limited between 50-100% */
+
+.row-two .one { 
+    /* sample book length 765pg */
+    width: calc(7.65% * 2);
+    height: calc(38.25% + 50%);
+    background-color: aquamarine ;
+
 }
 
-.row-two .one {
-    height: 70%;
+.row-two .two {
+    height: 60%;
+    width: 15%;
     background-color: aquamarine ;
+
 }
