@@ -9,7 +9,7 @@
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(30vw - 15px), 150px) minmax(10vw, 50px) minmax(calc(60vw - 15px), 300px);
+    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(30vw - 15px), 200px) minmax(10vw, 50px) minmax(calc(60vw - 15px), 300px);
     overflow: hidden;
     min-width: 500px;
     min-height: 500px;
@@ -65,54 +65,30 @@
 .library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
-    grid-template: 2fr repeat(3, 1fr) 2fr;
+    grid-template: 125px repeat(auto-fit, minmax(100px, 1fr)) / repeat(auto-fit, minmax(125px, .5fr));
+    gap: 10px;
     padding: 10px;
+    overflow: auto;
 }
 
-.book-shelf {
-    outline: darkcyan dotted 1px;
-}
+.top-shelf {
+    grid-area: 1 / 1 / 2 / -1;
+    border: 1px dotted palevioletred;
 
-.row-two,
-.row-three,
-.row-four {
-    display: flex;
-}
-
-.row-left,
-.row-right {
-    display: flex;
-    width: 50%;
-    height: 100%;
-    align-items: flex-end;
-    gap: 1px;
-}
-
-.row-left {
-    justify-content: flex-start;
-}
-
-.row-right {
-    justify-content: flex-end;
 }
 
 .book {
     border: 1px solid black;
-    position: relative;
-    max-width: 40%;
-    min-width: 20%;
-    max-height: 90%;
-    min-height: 50%;
+    max-width:  ;
+    min-width:  ;
+    max-height: ;
+    min-height: ;
 
 }
 
 .book > p {
-    position: absolute;
     font-family: "Lato", sans-serif;
-    font-size: clamp(.25rem, 9px, 1rem);
-    
-    
-    
+    font-size: clamp(.5rem, 11px, 2rem);
     
     
 }
@@ -121,21 +97,3 @@
     /* limited between 10-30% */
 /* book height formula - pg length / 10 * 50% [limited height bandwith for books] (for example 345pg book = ((34.5 * 50%) + 50%) */
     /* limited between 50-100% */
-
-.book-one { 
-    width: 35%;
-    height: 80%;
-    background-color: aquamarine;
-}
-
-.book-two {
-    width: 25%;
-    height: 60%;
-    background-color: aqua;
-}
-
-.book-three {
-    width: 25%;
-    height: 100%;
-    background-color: plum;
-}
