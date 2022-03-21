@@ -2,7 +2,6 @@ const form = document.getElementById('form');
 const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
 const bookPages = document.getElementById('pages');
-const bookRead = document.getElementById('read');
 const bookRecommend = document.getElementById('recommend');
 const bookDeposit = document.getElementsByClassName('deposit');
 const bookLibrary = document.getElementsByClassName('library');
@@ -22,8 +21,8 @@ function addBookToLibrary(e) {
     let newTitle = bookTitle.value;
     let newAuthor = bookAuthor.value;
     let newPages = bookPages.value;
-    let newRead = bookRead.value;
-    let newRecommend = bookRecommend.value;
+    let newRead = document.querySelector('input[name="read"]:checked').value;
+    let newRecommend = document.querySelector('input[name="recommend"]:checked').value;
     let newBook = new Book(newTitle, newAuthor, newPages, newRead, newRecommend)
     console.log(newBook);
     // store new Book object in myLibrary
