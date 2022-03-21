@@ -63,7 +63,7 @@
     outline: goldenrod dotted 1px;
 }
 
-.library {
+#library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
     grid-template: 125px repeat(auto-fit, minmax(100px, 1fr)) / repeat(auto-fit, minmax(125px, .5fr));
