@@ -39,6 +39,7 @@
 .help p {
     font-family: "Pacifico", cursive;
     font-size: 24px;
+    text-align: center;
 }
 
 .librarian {
@@ -80,9 +81,9 @@
 .book {
     border: 1px solid black;
     max-width:  ;
-    min-width:  ;
+    min-width:  100px;
     max-height: ;
-    min-height: ;
+    min-height: 100px;
 
 }
 

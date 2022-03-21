@@ -18,6 +18,31 @@
         <div class="help-desk">
             <div class="help">
                 <p>May I help you?</p>
+                <form action="post" class="add-book">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author">
+                    <label for="pages">Number of Pages</label>
+                    <input type="number" id="pages" name="pages">
+                    <fieldset class="read">
+                        <legend>Have You Read the Book?</legend>
+                            <input type="radio" id="read" name="read" value="Yes">
+                            <label for="Yes">Yes</label>
+                            <input type="radio" id="read" name="read" value="No">
+                            <label for="No">No</label>
+                    </fieldset>
+                    <fieldset class="recommend">
+                        <legend>Would You Recommend it to a Friend?</legend>
+                            <input type="radio" id="recommend" name="recommend" value="Yes">
+                            <label for="Yes">Yes</label>
+                            <input type="radio" id="recommend" name="recommend" value="No">
+                            <label for="No">No</label>
+                            <input type="radio" id="recommend" name="recommend" value="MaybeSo">
+                            <label for="No">Maybe So</label>
+                    </fieldset>
+                    
+                </form>
             </div>
             <div class="librarian">
                 <img src="img/Cartoon-Woman-With-Glasses.svg" alt="librarian">
