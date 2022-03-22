@@ -9,12 +9,14 @@
     display: grid;
     grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 300px);
     gap: 10px;
-    overflow: hidden;
-    min-width: 500px;
+    overflow: auto;
+    min-width: 700px;
     min-height: 500px;
     background-color: ghostwhite;
     border-radius: 5px;
     margin: 15px;
+    padding: 10px;
+    justify-content: space-between;
 }
 
 .help-desk, 
@@ -26,7 +28,7 @@
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
     display: grid;
-    grid-template: clamp(250px, calc(700px - 30vw), 60vh) 1fr / 1fr;
+    grid-template: clamp(300px, calc(700px - 30vw), 60vh) 1fr / 1fr;
 }
 
 .help {
@@ -38,6 +40,7 @@
     font-family: "Pacifico", cursive;
     font-size: 24px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .librarian {
@@ -48,7 +51,7 @@
 
 .librarian img {
     width: 15vw;
-    min-width: 150px;
+    min-width: 125px;
 }
 
 .ladder {
@@ -64,7 +67,7 @@
 #library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
-    grid-template: 125px repeat(auto-fit, minmax(100px, 1fr)) / repeat(auto-fit, minmax(125px, .5fr));
+    grid-template: 125px repeat(3, minmax(100px, 1fr)) / repeat(auto-fit, minmax(100px, .5fr));
     gap: 10px;
     overflow: auto;
 }
@@ -72,14 +75,14 @@
 .top-shelf {
     grid-area: 1 / 1 / 2 / -1;
     border: 1px dotted palevioletred;
-
+    background-color: bisque;
 }
 
 .book {
     border: 1px solid black;
     max-width:  200px;
     min-width:  100px;
-    max-height: 250px;
+    max-height: 200px;
     min-height: 100px;
 
 }

@@ -41,8 +41,6 @@ function addBookToLibrary(e) {
 
 function displayLibrary() {
     myLibrary.forEach((val, key, arr) => {
-        
-        
         if (Object.is(arr.length -1 , key)) {
             let bookArray = Object.values(val);
             let newBook = document.createElement('div');
