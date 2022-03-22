@@ -37,23 +37,28 @@
                             <p>Have You Read the Book?</p>
                             <input type="checkbox" id="read">
                             <label for="read" class="toggle">
-                                <p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
+                                <p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
                             </label>
                         </div>
                     </div>
                     <fieldset class="recommend">
-                        <legend>Would You Recommend it to a Friend?</legend>
-                            <div class="radio-wrapper">
-                                <label for="Yes">Yes
-                                    <input type="radio" id="recommend" name="recommend" value="yes">
-                                </label>
-                                <label for="No">No
-                                    <input type="radio" id="recommend" name="recommend" value="no">
-                                </label>
-                                <label for="No">Maybe So
-                                    <input type="radio" id="recommend" name="recommend" value="maybe-so">
-                                </label>
-                            </div>
+                        <div class="legend">
+                            <legend>Would You Recommend it to a Friend?</legend>
+                        </div>
+                        <div class="radio-wrapper">
+                            <label for="Yes">
+                                <input type="radio" id="recommend" name="recommend" value="yes">
+                                Yes
+                            </label>
+                            <label for="No">
+                                <input type="radio" id="recommend" name="recommend" value="no">
+                                No
+                            </label>
+                            <label for="No">
+                                <input type="radio" id="recommend" name="recommend" value="maybe-so">
+                                Maybe So
+                            </label>
+                        </div>
                     </fieldset>
                     <button type="submit" class="deposit-book">Deposit!</button>
                 </form>

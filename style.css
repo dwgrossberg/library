@@ -28,7 +28,7 @@
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
     display: grid;
-    grid-template: clamp(300px, calc(700px - 30vw), 60vh) 1fr / minmax(200px, 1fr);
+    grid-template: clamp(350px, calc(700px - 30vw), 60vh) 1fr / minmax(200px, 1fr);
 }
 
 .help {
@@ -115,11 +115,12 @@ input[type="number"] {
 
 .read-toggle {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     font-size: 10px;
     min-width: 115px;
+    width: 160px;
     text-align: center
 }
 
@@ -133,8 +134,8 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: center;
     padding: 7px 13px;
-    background-color: yellow;
-    width: 73px;
+    background-color: burlywood;
+    width: 80px;
     height: 16px;
     border-radius: 30px;
 }
@@ -142,7 +143,7 @@ input[type="checkbox"] {
 .toggle::after {
     content: '';
     position: absolute;
-    width: 50px;
+    width: 35px;
     height: 30px;
     border-radius: 30px;
     background-color: slategrey;
@@ -151,7 +152,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + .toggle::after {
-    left : 49px; 
+    left : 38px; 
     background-color: aqua;
 }
 
@@ -159,17 +160,19 @@ fieldset {
     border: none;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-left: 60px;
+    font-size: 10px;
 }
 
 legend {
-    margin-bottom: 10px;
-    text-align: center;
+    margin: 0 30px 10px 0;
+    width: 70px;
 }
 
 .radio-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
