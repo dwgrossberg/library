@@ -1,6 +1,4 @@
-:root {
-    --width:
-}
+
 
 *, body {
     margin: 0;
@@ -9,7 +7,8 @@
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(30vw - 15px), 200px) minmax(10vw, 50px) minmax(calc(60vw - 15px), 300px);
+    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 300px);
+    gap: 10px;
     overflow: hidden;
     min-width: 500px;
     min-height: 500px;
@@ -36,7 +35,7 @@
     border: forestgreen dotted 1px;
 }
 
-.help p {
+#help {
     font-family: "Pacifico", cursive;
     font-size: 24px;
     text-align: center;
@@ -68,7 +67,6 @@
     display: grid;
     grid-template: 125px repeat(auto-fit, minmax(100px, 1fr)) / repeat(auto-fit, minmax(125px, .5fr));
     gap: 10px;
-    padding: 10px;
     overflow: auto;
 }
 
@@ -80,9 +78,9 @@
 
 .book {
     border: 1px solid black;
-    max-width:  ;
+    max-width:  200px;
     min-width:  100px;
-    max-height: ;
+    max-height: 250px;
     min-height: 100px;
 
 }

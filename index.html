@@ -17,7 +17,7 @@
         
         <div class="help-desk">
             <div class="help">
-                <p>May I help you?</p>
+                <p id="help">May I help you?</p>
                 <form action="/library.js" method="post" id="form-deposit">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title">
@@ -25,13 +25,12 @@
                     <input type="text" id="author" name="author">
                     <label for="pages">Number of Pages</label>
                     <input type="number" id="pages" name="pages">
-                    <fieldset class="read">
-                        <legend>Have You Read the Book?</legend>
-                            <input type="radio" id="read-yes" name="read" value="Yes">
-                            <label for="read-yes">Yes</label>
-                            <input type="radio" id="read-no" name="read" value="No">
-                            <label for="read-no">No</label>
-                    </fieldset>
+                    <label for="id">Have You Read the Book?
+                        <input type="checkbox" id="read" class="toggle">
+                        <p>Read&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Read</p>
+                    </label>
+                    <input type="radio" id="read-no" name="read" value="No">
+                    <label for="read-no">No</label>
                     <fieldset class="recommend">
                         <legend>Would You Recommend it to a Friend?</legend>
                             <input type="radio" id="recommend" name="recommend" value="yes">
