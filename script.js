@@ -30,15 +30,15 @@ function addBookToLibrary(e) {
 }
 
 function displayLibrary() {
-    myLibrary.forEach(book => {
-
-        let bookArray = Object.values(book);
-        let newBook = document.createElement('div');
-        newBook.classList.add('book');
-        newBook.dataset.number = myLibrary.indexOf(book);
-        console.log(newBook.dataset.number);
-        newBook.innerText = bookArray;
-        library.appendChild(newBook);
+    myLibrary.forEach((val, key, arr) => {
+        if (Object.is(arr.length -1 , key)) {
+            let bookArray = Object.values(val);
+            let newBook = document.createElement('div');
+            newBook.classList.add('book');
+            newBook.dataset.number = myLibrary.indexOf(val);
+            newBook.innerHTML = '<h3>' + bookArray[0] + '</h3>' + '<h4>' + bookArray[1] + '</h4>' + '<h5>' + bookArray[2] + '</h5>';
+            library.appendChild(newBook);
+        } else return;
     })
 }
 
