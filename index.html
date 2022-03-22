@@ -23,26 +23,36 @@
                     <div class="remove">Remove a book</div>
                 </div>
                 <form action="/library.js" method="post" id="form-deposit">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author">
-                    <label for="pages">Number of Pages</label>
-                    <input type="number" id="pages" name="pages">
-                    <label for="id">Have You Read the Book?
-                        <input type="checkbox" id="read" class="toggle">
-                        <p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
+                    <label for="title"><img src="img/book-edit-outline.png" alt="book-title">
+                        <input type="text" id="title" name="title" placeholder="Book Title">
                     </label>
+                    <label for="author"><img src="img/typewriter.png" alt="author">
+                        <input type="text" id="author" name="author" placeholder="Author">
+                    </label>
+                    <div class="pages-read">
+                        <label for="pages"><img src="img/book-open-page-variant-outline.png" alt="page-numbers">
+                            <input type="number" id="pages" name="pages" placeholder="0">
+                        </label>
+                        <label for="read">Have You Read the Book?
+                            <input type="checkbox" id="read" class="toggle">
+                            <p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
+                        </label>
+                    </div>
                     <fieldset class="recommend">
                         <legend>Would You Recommend it to a Friend?</legend>
-                            <input type="radio" id="recommend" name="recommend" value="yes">
-                            <label for="Yes">Yes</label>
-                            <input type="radio" id="recommend" name="recommend" value="no">
-                            <label for="No">No</label>
-                            <input type="radio" id="recommend" name="recommend" value="maybe-so">
-                            <label for="No">Maybe So</label>
+                            <div class="radio-wrapper">
+                                <label for="Yes">Yes
+                                    <input type="radio" id="recommend" name="recommend" value="yes">
+                                </label>
+                                <label for="No">No
+                                    <input type="radio" id="recommend" name="recommend" value="no">
+                                </label>
+                                <label for="No">Maybe So
+                                    <input type="radio" id="recommend" name="recommend" value="maybe-so">
+                                </label>
+                            </div>
                     </fieldset>
-                    <button type="submit" class="deposit">Deposit</button>
+                    <button type="submit" class="deposit-book">Deposit!</button>
                 </form>
             </div>
             <div class="librarian">
