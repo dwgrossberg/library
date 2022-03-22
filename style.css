@@ -27,7 +27,6 @@
     grid-area: 1 / 1 / 2 / 2;
     display: grid;
     grid-template: clamp(250px, calc(700px - 30vw), 60vh) 1fr / 1fr;
-    padding: 10px;
 }
 
 .help {
