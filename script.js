@@ -1,5 +1,6 @@
 const form = document.getElementById('form-deposit');
 const library = document.getElementById('library');
+const libraryBook = document.getElementsByClassName('book');
 
 let myLibrary = [];
 
@@ -18,26 +19,27 @@ function addBookToLibrary(e) {
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
     let read = document.querySelector('input[name="read"]:checked').value;
-    let recommed = document.querySelector('input[name="recommend"]:checked').value;
-    let book = new Book(title, author, pages, read, recommed)
+    let recommend = document.querySelector('input[name="recommend"]:checked').value;
+    let book = new Book(title, author, pages, read, recommend)
     // store the new Book object to myLibrary
     myLibrary.push(book);
     console.log(book, myLibrary);
     // add the new Book object to the library DOM
-    let newBook = document.createElement('div');
-    newBook.classList.add('book');
-    let newTitle = document.createElement('h3');
-    newTitle.textContent = title;
-    let newAuthor = document.createElement('h4');
-    newAuthor.textContent = author;
+    displayLibrary();
+    form.reset();
+}
 
-    newBook.appendChild(newTitle);
-    newBook.appendChild(newAuthor);
+function displayLibrary() {
+    myLibrary.forEach(book => {
 
-
-    library.appendChild(newBook);
-    
-
+        let bookArray = Object.values(book);
+        let newBook = document.createElement('div');
+        newBook.classList.add('book');
+        newBook.dataset.number = myLibrary.indexOf(book);
+        console.log(newBook.dataset.number);
+        newBook.innerText = bookArray;
+        library.appendChild(newBook);
+    })
 }
 
 form.addEventListener('submit', addBookToLibrary);
