@@ -7,7 +7,7 @@
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 300px);
+    grid-template: minmax(calc(100vh - 30px), 600px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 300px);
     gap: 10px;
     overflow: auto;
     min-width: 700px;
@@ -28,7 +28,7 @@
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
     display: grid;
-    grid-template: clamp(300px, calc(700px - 30vw), 60vh) 1fr / 1fr;
+    grid-template: clamp(300px, calc(700px - 30vw), 60vh) 1fr / minmax(200px, 1fr);
 }
 
 .help {
@@ -113,14 +113,46 @@ input[type="number"] {
     margin-bottom: 10px;;
 }
 
-label[for="read"] {
+.read-toggle {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
+    font-size: 10px;
+    min-width: 115px;
+    text-align: center
 }
 
 input[type="checkbox"] {
     display: none;
+}
+
+.toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 13px;
+    background-color: yellow;
+    width: 73px;
+    height: 16px;
+    border-radius: 30px;
+}
+
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: slategrey;
+    left: 0px;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"]:checked + .toggle::after {
+    left : 49px; 
+    background-color: aqua;
 }
 
 fieldset {
@@ -137,12 +169,12 @@ legend {
 
 .radio-wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
 .radio-wrapper label {
-    
+    width: 65px;
 }
 
 .librarian {
