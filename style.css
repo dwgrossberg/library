@@ -49,26 +49,27 @@
     align-items: center;
 }
 
-.deposit,
-.remove {
+#deposit,
+#remove {
     padding: 10px;
     margin-bottom: 20px;
     width: 50%;
     font-family: "Lato", sans-serif;
     text-align: center;
     color: white;
+    cursor: pointer;
 }
 
-.deposit {
+#deposit {
     background-color: green;
 }
 
-.remove {
+#remove {
     background-color: blueviolet;
 }
 
 form {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -103,11 +104,12 @@ input[type="text"] {
 }
 
 input[type="number"] {
-    width: 50px;
+    width: 60px;
 }
 
 .pages-read {
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     width: 100%;
 }
@@ -119,7 +121,7 @@ input[type="number"] {
     gap: 10px;
     font-size: 10px;
     min-width: 115px;
-    width: 160px;
+    width: 130px;
     text-align: center
 }
 
@@ -132,18 +134,19 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 7px 13px;
+    padding: 5px 10px;
     background-color: burlywood;
     width: 30px;
     height: 15px;
     border-radius: 30px;
+    font-size: 9px;
 }
 
 .toggle::after {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
     border-radius: 30px;
     background-color: slategrey;
     left: 0px;
@@ -151,7 +154,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + .toggle::after {
-    left : 26px; 
+    left : 25px; 
     background-color: aqua;
 }
 
@@ -203,8 +206,8 @@ input[type="radio"] {
     position: absolute;
     top: 0;
     left: 0;
-    height: 15px;
-    width: 15px;
+    height: 13px;
+    width: 13px;
     background-color: #eee;
     border-radius: 50%;
 }

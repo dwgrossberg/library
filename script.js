@@ -1,4 +1,7 @@
-const form = document.getElementById('form-deposit');
+const depositBook = document.getElementById('deposit');
+const depositForm = document.getElementById('form-deposit');
+const readBook = document.querySelector('input[id="read"]');
+const recommendBook = document.getElementsByClassName('recommend');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -28,14 +31,14 @@ function addBookToLibrary(e) {
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
-    let read = document.querySelector('input[id="read"]:checked').value;
+    let read = readBook.value;
     let recommend = document.querySelector('input[name="recommend"]:checked').value;
     let book = new Book(title, author, pages, read, recommend)
     // store the new Book object to myLibrary
     myLibrary.push(book);
     console.log(book, myLibrary);
     // add the new Book object to the library DOM
-    form.reset();
+    depositForm.reset();
     displayLibrary();
 }
 
@@ -46,10 +49,21 @@ function displayLibrary() {
             let newBook = document.createElement('div');
             newBook.classList.add('book');
             newBook.dataset.number = myLibrary.indexOf(val);
-            newBook.innerHTML = '<h3>' + bookArray[0] + '</h3>' + '<h4>' + bookArray[1] + '</h4>' + '<h5>' + bookArray[2] + '</h5>';
+            newBook.innerHTML = '<h3>' + bookArray[0] + '</h3>' + '<h4>' + bookArray[1] + '</h4>' + '<h5>' + bookArray[2] + '</h5>' + bookArray[3] + bookArray[4];
             library.appendChild(newBook);
         } else return;
     })
 }
 
-form.addEventListener('submit', addBookToLibrary);
+depositForm.addEventListener('submit', addBookToLibrary);
+
+function displayDepositBook() {
+    if (window.getComputedStyle(depositForm).display === 'none') {
+        depositForm.style.display = 'flex';
+    } else {
+        depositForm.style.display = '';
+    }
+
+}
+
+depositBook.addEventListener('mousedown', displayDepositBook);

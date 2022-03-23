@@ -19,10 +19,10 @@
             <div class="help">
                 <p id="help">May I help you?</p>
                 <div class="deposit-remove">
-                    <div class="deposit">Make a deposit</div>
-                    <div class="remove">Remove a book</div>
+                    <div id="deposit">Make a deposit</div>
+                    <div id="remove">Remove a book</div>
                 </div>
-                <form action="/library.js" method="post" id="form-deposit">
+                <form action="/library.js" method="post" id="form-deposit" class="bookDeposit">
                     <label for="title"><img src="img/book-edit-outline.png" alt="book-title">
                         <input type="text" id="title" name="title" placeholder="Book Title">
                     </label>
@@ -31,7 +31,7 @@
                     </label>
                     <div class="pages-read">
                         <label for="pages"><img src="img/book-open-page-variant-outline.png" alt="page-numbers">
-                            <input type="number" id="pages" name="pages" placeholder="0">
+                            <input type="number" id="pages" name="pages" placeholder="# of Pp">
                         </label>
                         <div class="read-toggle">
                             <p>Have You Read the Book?</p>
