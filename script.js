@@ -1,7 +1,7 @@
 const depositBook = document.getElementById('deposit');
 const depositForm = document.getElementById('form-deposit');
 const readBook = document.querySelector('input[id="read"]');
-const recommendBook = document.getElementsByClassName('recommend');
+const recommendBook = document.getElementById('recommend');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -32,7 +32,9 @@ function addBookToLibrary(e) {
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
     let read = readBook.value;
-    let recommend = document.querySelector('input[name="recommend"]:checked').value;
+    if (read === 'checked') {
+        let recommend = document.querySelector('input[name="recommend"]:checked').value;
+    }
     let book = new Book(title, author, pages, read, recommend)
     // store the new Book object to myLibrary
     myLibrary.push(book);
@@ -67,3 +69,13 @@ function displayDepositBook() {
 }
 
 depositBook.addEventListener('mousedown', displayDepositBook);
+
+function displayRecommendBook() {
+    if (window.getComputedStyle(recommendBook).display === 'none') {
+        recommendBook.style.display = 'flex';
+    } else {
+        recommendBook.style.display = '';
+    }
+}
+
+readBook.addEventListener('change', displayRecommendBook);

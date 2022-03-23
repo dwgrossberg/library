@@ -161,7 +161,7 @@ input[type="checkbox"]:checked + .toggle::after {
 fieldset {
     border: none;
     width: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     margin-left: 60px;
     font-size: 10px;
