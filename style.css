@@ -110,7 +110,6 @@ input[type="number"] {
     display: flex;
     gap: 10px;
     width: 100%;
-    margin-bottom: 10px;;
 }
 
 .read-toggle {
@@ -135,16 +134,16 @@ input[type="checkbox"] {
     justify-content: center;
     padding: 7px 13px;
     background-color: burlywood;
-    width: 80px;
-    height: 16px;
+    width: 30px;
+    height: 15px;
     border-radius: 30px;
 }
 
 .toggle::after {
     content: '';
     position: absolute;
-    width: 35px;
-    height: 30px;
+    width: 30px;
+    height: 28px;
     border-radius: 30px;
     background-color: slategrey;
     left: 0px;
@@ -152,7 +151,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + .toggle::after {
-    left : 38px; 
+    left : 26px; 
     background-color: aqua;
 }
 
@@ -167,18 +166,56 @@ fieldset {
 
 legend {
     margin: 0 30px 10px 0;
-    width: 70px;
+    width: 55px;
 }
 
 .radio-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    align-items: center;
 }
 
 .radio-wrapper label {
-    width: 65px;
+    width: 75px;
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+input[type="radio"] {
+    margin-right: 10px;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    top: 0;
+    left: 0;
+}
+
+.radio-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radio-button:hover {
+    background-color: #ccc;
+}
+
+input[type="radio"]:checked ~ .radio-button {
+    background-color: #2196F3;
+}  
 
 .librarian {
     grid: 2 / 1 / 3 / 2;
