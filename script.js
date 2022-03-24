@@ -16,9 +16,9 @@ function Book(title, author, pages, read, recommend) {
     this.recommend = recommend;
 }
 
-const book1 = new Book('Mirrors: Stories of Almost Everyone', 'Eduardo Galeano', 401, 'no');
-const book2 = new Book('Henry and June', 'Anais Nin', 281, 'yes', 'yes');
-const book3 = new Book('Journey to the End of the Night', 'Louis-Ferdinand Céline', 464, 'yes', 'maybe-so');
+const book1 = new Book('Mirrors: Stories of Almost Everyone', 'Eduardo Galeano', 401, false);
+const book2 = new Book('Henry and June', 'Anais Nin', 281, true, 'yes');
+const book3 = new Book('Journey to the End of the Night', 'Louis-Ferdinand Céline', 464, true, 'maybe-so');
 myBooks.push(book1, book2, book3);
 myBooks.forEach(book => {
     myLibrary.push(book);
@@ -31,10 +31,13 @@ function addBookToLibrary(e) {
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
-    let read = readBook.value;
-    if (read === 'checked') {
-        let recommend = document.querySelector('input[name="recommend"]:checked').value;
+    let read;
+    if (readBook.checked) {
+        read = 'true';
+    } else {
+        read = readBook.value;
     }
+    let recommend = recommendBook.value;
     let book = new Book(title, author, pages, read, recommend)
     // store the new Book object to myLibrary
     myLibrary.push(book);
