@@ -1,20 +1,24 @@
 
 
-*, body {
+body {
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 600px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 300px);
+    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 350px);
     gap: 10px;
-    overflow: auto;
+    width: 98vw;
     min-width: 700px;
-    min-height: 500px;
+    height: 98vh;
     background-color: ghostwhite;
     border-radius: 5px;
-    margin: 15px;
     padding: 10px;
     justify-content: space-between;
 }
@@ -27,8 +31,9 @@
 
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
+    min-width: 250px;
     display: grid;
-    grid-template: clamp(350px, calc(700px - 30vw), 60vh) 1fr / minmax(200px, 1fr);
+    grid-template: clamp(350px, calc(700px - 30vw), 60vh) 1fr / minmax(250px, 1fr);
 }
 
 .help {
@@ -253,7 +258,7 @@ form button {
 #library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
-    grid-template: 125px repeat(3, minmax(100px, 1fr)) / repeat(auto-fit, minmax(100px, .5fr));
+    grid-template: 125px repeat(3, minmax(165px, 1fr)) / repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
     overflow: auto;
 }
@@ -266,21 +271,23 @@ form button {
 
 .book {
     border: 1px solid black;
-    max-width:  200px;
+    max-width:  150px;
     min-width:  100px;
     max-height: 200px;
-    min-height: 100px;
+    min-height: 150px;
 
 }
 
-.book > p {
+.book {
     font-family: "Lato", sans-serif;
     font-size: clamp(.5rem, 11px, 2rem);
-    
-    
+    padding: 5px 10px;
 }
 
-/* book width formula -  pg length / 100 * 3 [generic multiplier] (for example 345pg book = 3.45% * 2) */
-    /* limited between 10-30% */
-/* book height formula - pg length / 10 * 50% [limited height bandwith for books] (for example 345pg book = ((34.5 * 50%) + 50%) */
-    /* limited between 50-100% */
+.book h3 {
+    font-style: italic;
+}
+
+.book h4 {
+    text-transform: uppercase;
+}

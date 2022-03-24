@@ -37,7 +37,12 @@ function addBookToLibrary(e) {
     } else {
         read = readBook.value;
     }
-    let recommend = recommendBook.value;
+    let recommend;
+    if (read === 'true') {
+        recommend = document.querySelector('input[type=radio]:checked').value;
+    } else {
+        recommend = 'undefined';
+    }
     let book = new Book(title, author, pages, read, recommend)
     // store the new Book object to myLibrary
     myLibrary.push(book);
@@ -45,6 +50,8 @@ function addBookToLibrary(e) {
     // add the new Book object to the library DOM
     depositForm.reset();
     displayLibrary();
+    depositForm.style.display = '';
+    recommendBook.style.display = '';
 }
 
 function displayLibrary() {
