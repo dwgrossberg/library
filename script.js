@@ -1,7 +1,10 @@
 const depositBook = document.getElementById('deposit');
 const depositForm = document.getElementById('form-deposit');
 const readBook = document.querySelector('input[id="read"]');
-const recommendBook = document.getElementById('recommend');
+const recommendLegend = document.getElementsByClassName('legend');
+const recommendFieldset = document.getElementById('recommend');
+const recommendImg = document.getElementById('recommend-img');
+const recommend = document.querySelector('input[name="recommend"]');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -72,7 +75,7 @@ depositForm.addEventListener('submit', addBookToLibrary);
 function displayDepositBook() {
     if (window.getComputedStyle(depositForm).display === 'none') {
         depositForm.reset();
-        recommendBook.style.display = '';
+        recommendFieldset.style.display = '';
         depositForm.style.display = 'flex';
     } else {
         depositForm.style.display = '';
@@ -83,11 +86,36 @@ function displayDepositBook() {
 depositBook.addEventListener('mousedown', displayDepositBook);
 
 function displayRecommendBook() {
-    if (window.getComputedStyle(recommendBook).display === 'none') {
-        recommendBook.style.display = 'flex';
+    if (window.getComputedStyle(recommendFieldset).display === 'none') {
+        recommendFieldset.style.display = 'flex';
     } else {
-        recommendBook.style.display = '';
+        recommendFieldset.style.display = '';
+        recommendImg.src = '';
+        recommendImg.style.opacity = 0;
     }
 }
 
 readBook.addEventListener('change', displayRecommendBook);
+
+function insertRecommendThumb() {
+    let recommendedBook = document.querySelector('input[name="recommend"]:checked');
+    if (recommendedBook.value === 'yes') {
+        recommendImg.src = 'img/thumb-up-outline.png';
+        recommendImg.style.opacity = 1;
+    } else if (recommendedBook.value === 'no') {
+        recommendImg.src = 'img/thumb-down-outline.png';
+        recommendImg.style.opacity = 1;
+    } else if (recommendedBook.value === 'maybe-so') {
+        recommendImg.src = 'img/thumbs-up-down-outline.png';
+        recommendImg.style.opacity = 1;
+    } else {
+        recommendImg.src = '';
+        recommendImg.style.opacity = 0;
+    }
+}
+
+if (document.querySelector('input[name="recommend"]')) {
+    document.querySelectorAll('input[name="recommend"]').forEach(elem => {
+        elem.addEventListener('change', insertRecommendThumb)
+    })
+}

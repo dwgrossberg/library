@@ -97,6 +97,7 @@ label {
 
 form img{
     height: 20px;
+    width: 20px;
     margin-right: 10px;
 }
 
@@ -128,7 +129,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     font-size: 10px;
     min-width: 115px;
     width: 130px;
@@ -171,25 +172,39 @@ input[type="checkbox"]:checked + .toggle::after {
 .radio-submit-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 20px;
+    padding-left: 20px;
+
+}
+
+#recommend-img {
+    opacity: 0;
 }
 
 fieldset {
     border: none;
     display: none;
-    align-items: center;
     font-size: 10px;
-    margin-left: 60px;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
 }
 
 legend {
-    margin: 0 30px 10px 0;
-    width: 55px;
+    margin: -5px 10px 0 0;
+    width: 60px;
+    text-align: right;
 }
 
 .radio-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .radio-wrapper label {
@@ -235,12 +250,12 @@ input[type="radio"]:checked ~ .radio-button {
 }  
 
 form button {
-    padding: 10px;
+    padding: 15px;
     border-radius: 13px;
     border: none;
     background-color: bisque;
-    height: 60px;
-
+    height: 55px;
+    width: 50px;
 }
 
 .librarian {
