@@ -71,6 +71,8 @@ depositForm.addEventListener('submit', addBookToLibrary);
 
 function displayDepositBook() {
     if (window.getComputedStyle(depositForm).display === 'none') {
+        depositForm.reset();
+        recommendBook.style.display = '';
         depositForm.style.display = 'flex';
     } else {
         depositForm.style.display = '';

@@ -62,7 +62,7 @@ body {
 #deposit,
 #remove {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     width: 50%;
     font-family: "Lato", sans-serif;
     text-align: center;
@@ -168,9 +168,13 @@ input[type="checkbox"]:checked + .toggle::after {
     background-color: aqua;
 }
 
+.radio-submit-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 fieldset {
     border: none;
-    width:100%;
     display: none;
     align-items: center;
     font-size: 10px;
@@ -189,7 +193,7 @@ legend {
 }
 
 .radio-wrapper label {
-    width: 75px;
+    width: 65px;
     display: block;
     position: relative;
     padding-left: 25px;
@@ -232,10 +236,11 @@ input[type="radio"]:checked ~ .radio-button {
 
 form button {
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 13px;
     border: none;
     background-color: bisque;
-    width: 100px;
+    height: 60px;
+
 }
 
 .librarian {
