@@ -4,7 +4,9 @@ const readBook = document.querySelector('input[id="read"]');
 const recommendLegend = document.getElementsByClassName('legend');
 const recommendFieldset = document.getElementById('recommend');
 const recommendImg = document.getElementById('recommend-img');
+const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
 const recommend = document.querySelector('input[name="recommend"]');
+const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -77,8 +79,10 @@ function displayDepositBook() {
         depositForm.reset();
         recommendFieldset.style.display = '';
         depositForm.style.display = 'flex';
+        recommendImgWrapper.style.display = 'none';
     } else {
         depositForm.style.display = '';
+        recommendImgWrapper.style.display = 'flex';
     }
 
 }
@@ -87,11 +91,18 @@ depositBook.addEventListener('mousedown', displayDepositBook);
 
 function displayRecommendBook() {
     if (window.getComputedStyle(recommendFieldset).display === 'none') {
+        recommendImgWrapper.style.display = 'flex';
         recommendFieldset.style.display = 'flex';
+        depositPseudoButton.style.display = 'none';
     } else {
+        recommendImgWrapper.style.display = 'none';
+        depositPseudoButton.style.display = 'flex';
         recommendFieldset.style.display = '';
         recommendImg.src = '';
         recommendImg.style.opacity = 0;
+        if (document.querySelector('input[name="recommend"]:checked')) {
+            document.querySelector('input[name="recommend"]:checked').checked = false;
+        }
     }
 }
 
