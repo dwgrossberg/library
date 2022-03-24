@@ -1,26 +1,31 @@
 
 
-body {
+body, * {
     margin: 0;
     padding: 0;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    height: calc(100vh - 10px);
+    width: calc(100vw - 10px);
+    min-width: 700px;
+    min-height: 500px;
 }
 
 .container {
     display: grid;
     grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 350px);
     gap: 10px;
-    width: 98vw;
-    min-width: 700px;
-    height: 98vh;
+    min-width: 98vw;
+    min-height: 98vh;
     background-color: ghostwhite;
     border-radius: 5px;
     padding: 10px;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .help-desk, 
@@ -45,7 +50,7 @@ body {
     font-family: "Pacifico", cursive;
     font-size: 24px;
     text-align: center;
-    margin: 5px 0 20px 0;
+    margin: 15px 0 20px 0;
 }
 
 .deposit-remove {
@@ -165,11 +170,11 @@ input[type="checkbox"]:checked + .toggle::after {
 
 fieldset {
     border: none;
-    width: 100%;
+    width:100%;
     display: none;
     align-items: center;
-    margin-left: 60px;
     font-size: 10px;
+    margin-left: 60px;
 }
 
 legend {
@@ -230,8 +235,7 @@ form button {
     border-radius: 5px;
     border: none;
     background-color: bisque;
-    width: 150px;
-    margin-top: 10px;
+    width: 100px;
 }
 
 .librarian {
@@ -242,7 +246,7 @@ form button {
 
 .librarian img {
     width: 15vw;
-    min-width: 125px;
+    min-width: 100px;
 }
 
 .ladder {
@@ -260,7 +264,6 @@ form button {
     display: grid;
     grid-template: 125px repeat(3, minmax(165px, 1fr)) / repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
-    overflow: auto;
 }
 
 .top-shelf {
@@ -270,15 +273,16 @@ form button {
 }
 
 .book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     border: 1px solid black;
+    border-radius: 5px;
     max-width:  150px;
     min-width:  100px;
     max-height: 200px;
     min-height: 150px;
-
-}
-
-.book {
+    background-color: azure;
     font-family: "Lato", sans-serif;
     font-size: clamp(.5rem, 11px, 2rem);
     padding: 5px 10px;
@@ -290,4 +294,8 @@ form button {
 
 .book h4 {
     text-transform: uppercase;
+}
+
+#read-in-book {
+    wi
 }
