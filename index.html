@@ -22,7 +22,7 @@
                     <div id="deposit">Make a deposit</div>
                     <div id="remove">Remove a book</div>
                 </div>
-                <form action="/library.js" method="post" id="form-deposit" class="bookDeposit">
+                <form action="/library.js" method="post" id="form-deposit">
                     <label for="title"><img src="img/book-edit-outline.png" alt="book-title">
                         <input type="text" id="title" name="title" placeholder="Book Title" required>
                     </label>
@@ -70,6 +70,14 @@
                         <div id="deposit-pseudo-button"><p id="deposit-pseudo-button-text">Deposit!</p></div>
                         <button type="submit" id="deposit-book-button">✔</button>
                     </div>    
+                </form>
+                <form action="/library.js" method="post" id="form-remove">
+                    <label for="title"><img src="img/book-edit-outline.png" alt="book-title">
+                        <input type="text" id="title" name="title" placeholder="Book Title" required>
+                    </label>
+                    <label for="author"><img src="img/typewriter.png" alt="author">
+                        <input type="text" id="author" name="author" placeholder="Author" required>
+                    </label>
                 </form>
             </div>
             <div class="librarian">

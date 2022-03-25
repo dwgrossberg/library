@@ -1,5 +1,7 @@
 const depositBook = document.getElementById('deposit');
+const removeBook = document.getElementById('remove');
 const depositForm = document.getElementById('form-deposit');
+const removeForm = document.getElementById('form-remove');
 const readBook = document.querySelector('input[id="read"]');
 const recommendLegend = document.getElementsByClassName('legend');
 const recommendFieldset = document.getElementById('recommend');
@@ -10,7 +12,6 @@ const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
 const library = document.getElementById('library');
 const libraryBooks = document.getElementsByClassName('book');
-const removeBook = document.getElementsByClassName('remove-book');
 
 let myLibrary = [];
 let myBooks = [];
@@ -70,7 +71,7 @@ function displayLibrary() {
             let newBook = document.createElement('div');
             newBook.classList.add('book');
             newBook.setAttribute('id', myLibrary.indexOf(val));
-            newBook.innerHTML = '<span class="remove-book">' + '</span>' + 
+            newBook.innerHTML = '<span class="delete-book">' + '</span>' + 
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
             '<h5>' + bookArray[2] + ' pages' + '</h5>' + 
@@ -85,7 +86,7 @@ depositForm.addEventListener('submit', addBookToLibrary);
 
 // Display the form for depositing a book
 function displayDepositBook() {
-    if (window.getComputedStyle(depositForm).display === 'none') {
+    if (window.getComputedStyle(depositForm).display === 'none' && window.getComputedStyle(removeForm).display === 'none') {
         depositForm.reset();
         recommendFieldset.style.display = '';
         depositForm.style.display = 'flex';
@@ -94,10 +95,21 @@ function displayDepositBook() {
         depositForm.style.display = '';
         recommendImgWrapper.style.display = 'flex';
     }
-
 }
 
 depositBook.addEventListener('mousedown', displayDepositBook);
+
+// Display the form for removing a book
+function displayRemoveBook() {
+    if (window.getComputedStyle(removeForm).display === 'none' && window.getComputedStyle(depositForm).display === 'none') {
+        removeForm.reset();
+        removeForm.style.display = 'flex';
+    } else {
+        removeForm.style.display = '';
+    }
+}
+
+removeBook.addEventListener('mousedown', displayRemoveBook);
 
 // Display the recommended book radio button input field
 function displayRecommendBook() {
@@ -149,13 +161,12 @@ depositPseudoButton.addEventListener('mousedown', () => {
 
 // Delete Book object from the local storage array myLibrary and DOM
 function deleteBook(e) {
-    console.log(e.target.nodeName);
     if (e.target && e.target.nodeName == 'SPAN') {
         let bookIndex = e.target.parentNode.id;
-        myLibrary.splice(bookIndex, 1);
-        let bookToRemove = document.getElementById(`${bookIndex}`);
-        console.log(myLibrary, bookIndex, bookToRemove);
-        let removedBook = library.removeChild(bookToRemove);
+        myLibrary.slice(bookIndex, 1);
+        let bookToDelete = document.getElementById(`${bookIndex}`);
+        console.log(myLibrary, bookIndex);
+        let deletedBook = library.removeChild(bookToDelete);
     }
 }
 

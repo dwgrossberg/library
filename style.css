@@ -335,7 +335,7 @@ form button {
     position: relative;
 }
 
-.remove-book {
+.delete-book {
     background-color: grey;
     width: 15px;
     height: 15px;
@@ -346,7 +346,7 @@ form button {
     cursor: pointer;
 }
 
-.remove-book::after {
+.delete-book::after {
     content: "✘";
     display: flex;
     align-items: center;
