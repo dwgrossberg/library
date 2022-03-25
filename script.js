@@ -135,6 +135,3 @@ depositPseudoButton.addEventListener('mousedown', () => {
 })
 
 
-
-
-

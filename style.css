@@ -1,5 +1,3 @@
-
-
 body, * {
     margin: 0;
     padding: 0;
@@ -268,7 +266,6 @@ input[type="radio"]:checked ~ .radio-button {
     min-width: 0;
 }
 
-
 #recommend-img-wrapper {
     display: flex;
     align-items: center;
@@ -308,14 +305,18 @@ form button {
 #library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
-    grid-template: 125px repeat(3, minmax(165px, 1fr)) / repeat(auto-fit, minmax(120px, 1fr));
+    grid-template: 125px repeat(auto-fit, minmax(250px, 1fr)) / repeat(auto-fit, minmax(145px, 1fr));
     gap: 10px;
+    padding-right: 10px;
+    overflow: auto;
+    justify-items: center;
 }
 
 .top-shelf {
     grid-area: 1 / 1 / 2 / -1;
     border: 1px dotted palevioletred;
     background-color: bisque;
+    width: 100%;
 }
 
 .book {
@@ -325,8 +326,8 @@ form button {
     border: 1px solid black;
     border-radius: 5px;
     max-width:  150px;
-    min-width:  100px;
-    max-height: 200px;
+    min-width:  125px;
+    max-height: 250px;
     min-height: 150px;
     background-color: azure;
     font-family: "Lato", sans-serif;
@@ -340,8 +341,4 @@ form button {
 
 .book h4 {
     text-transform: uppercase;
-}
-
-#read-in-book {
-    wi
 }
