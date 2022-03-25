@@ -35,9 +35,8 @@ myBooks.forEach(book => {
 
 // Create a new Book object and store it in the array myLibrary
 function addBookToLibrary(e) {
-    console.log(e);
     if (e !== 'undefined') e.preventDefault();
-    // store user values
+    // store user-entered values
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
@@ -75,7 +74,8 @@ function displayLibrary() {
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
             '<h5>' + bookArray[2] + ' pages' + '</h5>' + 
-            '<div id="read-in-book">' + '<span class="read-in-book-toggle">' + bookArray[3] + '</span>' + '</div>' + bookArray[4];
+            '<div id="read-in-book">' + '<span class="read-in-book-toggle">' + bookArray[3] + '</span>' + '</div>' + 
+            bookArray[4];
             library.appendChild(newBook);
         } else return;
     })
@@ -147,4 +147,11 @@ depositPseudoButton.addEventListener('mousedown', () => {
     depositBookButton.click();
 })
 
+// Delete Book object from the local storage array myLibrary and DOM
+function deleteBook(e) {
+    let bookIndex = e.dataset.number;
+    myLibrary.splice(bookIndex, 1);
+}
+
+removeBook.addEventListener('mousedown', deleteBook)
 
