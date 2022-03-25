@@ -9,6 +9,7 @@ const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
 const library = document.getElementById('library');
+const libraryBooks = document.getElementsByClassName('book');
 const removeBook = document.getElementsByClassName('remove-book');
 
 let myLibrary = [];
@@ -148,12 +149,15 @@ depositPseudoButton.addEventListener('mousedown', () => {
 
 // Delete Book object from the local storage array myLibrary and DOM
 function deleteBook(e) {
-    let bookIndex = e.target.parentNode.id;
-    myLibrary.splice(bookIndex, 1);
-    let bookToRemove = document.getElementById(`${bookIndex}`);
-    console.log(myLibrary, bookIndex, bookToRemove);
-    let removedBook = library.removeChild(bookToRemove);
+    console.log(e.target.nodeName);
+    if (e.target && e.target.nodeName == 'SPAN') {
+        let bookIndex = e.target.parentNode.id;
+        myLibrary.splice(bookIndex, 1);
+        let bookToRemove = document.getElementById(`${bookIndex}`);
+        console.log(myLibrary, bookIndex, bookToRemove);
+        let removedBook = library.removeChild(bookToRemove);
+    }
 }
 
-Array.from(removeBook).forEach(elem => elem.addEventListener('mousedown', deleteBook));
+library.addEventListener('mousedown', deleteBook);
 
