@@ -9,7 +9,6 @@ const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
 const library = document.getElementById('library');
-const libraryBook = document.getElementsByClassName('book');
 const removeBook = document.getElementsByClassName('remove-book');
 
 let myLibrary = [];
@@ -69,7 +68,7 @@ function displayLibrary() {
             let bookArray = Object.values(val);
             let newBook = document.createElement('div');
             newBook.classList.add('book');
-            newBook.dataset.number = myLibrary.indexOf(val);
+            newBook.setAttribute('id', myLibrary.indexOf(val));
             newBook.innerHTML = '<span class="remove-book">' + '</span>' + 
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
@@ -148,13 +147,13 @@ depositPseudoButton.addEventListener('mousedown', () => {
 })
 
 // Delete Book object from the local storage array myLibrary and DOM
-function deleteBookFromDOM(e) {
-    let bookIndex = e.target.parentNode.dataset.number;
+function deleteBook(e) {
+    let bookIndex = e.target.parentNode.id;
     myLibrary.splice(bookIndex, 1);
-    console.log(myLibrary);
-    let bookToRemove = document.querySelectorAll('[data-number]');
-    
+    let bookToRemove = document.getElementById(`${bookIndex}`);
+    console.log(myLibrary, bookIndex, bookToRemove);
+    let removedBook = library.removeChild(bookToRemove);
 }
 
-Array.from(removeBook).forEach(elem => elem.addEventListener('mousedown', deleteBookFromDOM));
+Array.from(removeBook).forEach(elem => elem.addEventListener('mousedown', deleteBook));
 
