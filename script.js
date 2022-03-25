@@ -10,6 +10,7 @@ const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
+const removeBook = document.getElementsByClassName('remove-book');
 
 let myLibrary = [];
 let myBooks = [];
@@ -22,6 +23,7 @@ function Book(title, author, pages, read, recommend) {
     this.recommend = recommend;
 }
 
+// Default books on pageload
 const book1 = new Book('Mirrors: Stories of Almost Everyone', 'Eduardo Galeano', 401, false);
 const book2 = new Book('Henry and June', 'Anais Nin', 281, true, 'yes');
 const book3 = new Book('Journey to the End of the Night', 'Louis-Ferdinand Céline', 464, true, 'maybe-so');
@@ -31,6 +33,7 @@ myBooks.forEach(book => {
     displayLibrary();
 })
 
+// Create a new Book object and store it in the array myLibrary
 function addBookToLibrary(e) {
     console.log(e);
     if (e !== 'undefined') e.preventDefault();
@@ -60,6 +63,7 @@ function addBookToLibrary(e) {
     depositForm.style.display = '';
 }
 
+// Display books to the library and add html markup to the Book objects
 function displayLibrary() {
     myLibrary.forEach((val, key, arr) => {
         if (Object.is(arr.length -1 , key)) {
@@ -67,7 +71,11 @@ function displayLibrary() {
             let newBook = document.createElement('div');
             newBook.classList.add('book');
             newBook.dataset.number = myLibrary.indexOf(val);
-            newBook.innerHTML = '<h3>' + bookArray[0] + '</h3>' + '<h4>' + bookArray[1] + '</h4>' + '<h5>' + bookArray[2] + ' pages' + '</h5>' + '<div id="read-in-book">' + '<span class="read-in-book-toggle">' + bookArray[3] + '</span>' + '</div>' + bookArray[4];
+            newBook.innerHTML = '<span class="remove-book">' + '</span>' + 
+            '<h3>' + bookArray[0] + '</h3>' + 
+            '<h4>' + bookArray[1] + '</h4>' + 
+            '<h5>' + bookArray[2] + ' pages' + '</h5>' + 
+            '<div id="read-in-book">' + '<span class="read-in-book-toggle">' + bookArray[3] + '</span>' + '</div>' + bookArray[4];
             library.appendChild(newBook);
         } else return;
     })
@@ -75,6 +83,7 @@ function displayLibrary() {
 
 depositForm.addEventListener('submit', addBookToLibrary);
 
+// Display the form for depositing a book
 function displayDepositBook() {
     if (window.getComputedStyle(depositForm).display === 'none') {
         depositForm.reset();
@@ -90,6 +99,7 @@ function displayDepositBook() {
 
 depositBook.addEventListener('mousedown', displayDepositBook);
 
+// Display the recommended book radio button input field
 function displayRecommendBook() {
     if (window.getComputedStyle(recommendFieldset).display === 'none') {
         recommendImgWrapper.style.display = 'flex';
@@ -107,6 +117,7 @@ function displayRecommendBook() {
 
 readBook.addEventListener('change', displayRecommendBook);
 
+// Display the recommended thumb icon and match it with the corresponding value
 function insertRecommendThumb() {
     let recommendedBook = document.querySelector('input[name="recommend"]:checked');
     if (recommendedBook.value === 'yes') {
@@ -124,12 +135,14 @@ function insertRecommendThumb() {
     }
 }
 
+// Loop through each recommended radio button to attach a change event
 if (document.querySelector('input[name="recommend"]')) {
     document.querySelectorAll('input[name="recommend"]').forEach(elem => {
         elem.addEventListener('change', insertRecommendThumb)
     })
 }
 
+// Link the pseudoButton with the real form button
 depositPseudoButton.addEventListener('mousedown', () => {
     depositBookButton.click();
 })
