@@ -271,7 +271,7 @@ input[type="radio"]:checked ~ .radio-button {
     align-items: center;
 }
 
-form button {
+#deposit-book-button {
     padding: 15px;
     border-radius: 0 13px 13px 0;
     border: none;
@@ -279,6 +279,10 @@ form button {
     height: 55px;
     width: 40px;
     cursor: pointer;
+}
+
+#remove-book-button {
+    width: 100%;
 }
 
 .librarian {

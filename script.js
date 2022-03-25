@@ -91,6 +91,12 @@ function displayDepositBook() {
         recommendFieldset.style.display = '';
         depositForm.style.display = 'flex';
         recommendImgWrapper.style.display = 'none';
+    } else if (window.getComputedStyle(depositForm).display === 'none' && window.getComputedStyle(removeForm).display === 'flex') {
+        removeForm.style.display = '';
+        depositForm.reset();
+        recommendFieldset.style.display = '';
+        depositForm.style.display = 'flex';
+        recommendImgWrapper.style.display = 'none';
     } else {
         depositForm.style.display = '';
         recommendImgWrapper.style.display = 'flex';
@@ -102,6 +108,10 @@ depositBook.addEventListener('mousedown', displayDepositBook);
 // Display the form for removing a book
 function displayRemoveBook() {
     if (window.getComputedStyle(removeForm).display === 'none' && window.getComputedStyle(depositForm).display === 'none') {
+        removeForm.reset();
+        removeForm.style.display = 'flex';
+    } else if (window.getComputedStyle(removeForm).display === 'none' && window.getComputedStyle(depositForm).display === 'flex') {
+        depositForm.style.display = '';
         removeForm.reset();
         removeForm.style.display = 'flex';
     } else {
