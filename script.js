@@ -65,7 +65,7 @@ function addBookToLibrary(e) {
 // Display books to the library and add html markup to the Book objects
 function displayLibrary() {
     myLibrary.forEach((val, key, arr) => {
-        if (Object.is(arr.length -1 , key)) {
+        if (Object.is(arr.length -1 , key)) {   //print last object in myLibrary to the display
             let bookArray = Object.values(val);
             let newBook = document.createElement('div');
             newBook.classList.add('book');
@@ -148,10 +148,13 @@ depositPseudoButton.addEventListener('mousedown', () => {
 })
 
 // Delete Book object from the local storage array myLibrary and DOM
-function deleteBook(e) {
-    let bookIndex = e.dataset.number;
+function deleteBookFromDOM(e) {
+    let bookIndex = e.target.parentNode.dataset.number;
     myLibrary.splice(bookIndex, 1);
+    console.log(myLibrary);
+    let bookToRemove = document.querySelectorAll('[data-number]');
+    
 }
 
-removeBook.addEventListener('mousedown', deleteBook)
+Array.from(removeBook).forEach(elem => elem.addEventListener('mousedown', deleteBookFromDOM));
 

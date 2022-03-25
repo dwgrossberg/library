@@ -15,7 +15,7 @@ body {
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(10vw, 50px) minmax(calc(55vw - 15px), 350px);
+    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(7vw, 50px) minmax(calc(55vw - 15px), 350px);
     gap: 10px;
     min-width: 98vw;
     min-height: 98vh;
@@ -305,7 +305,7 @@ form button {
 #library {
     grid-area: 1 / 3 / 2 / 4;
     display: grid;
-    grid-template: 125px repeat(auto-fit, minmax(250px, 1fr)) / repeat(auto-fit, minmax(200px, 1fr));
+    grid-template: 125px repeat(auto-fit, minmax(250px, 1fr)) / repeat(auto-fit, minmax(220px, 1fr));
     gap: 10px;
     padding-right: 10px;
     overflow: auto;
@@ -326,7 +326,7 @@ form button {
     justify-content: space-evenly;
     border: 1px solid black;
     border-radius: 5px;
-    width: 175px;
+    width: 185px;
     height: 225px;
     background-color: azure;
     font-family: "Lato", sans-serif;
@@ -343,10 +343,11 @@ form button {
     position: absolute;
     top: 5px;
     right: 5px;
+    cursor: pointer;
 }
 
 .remove-book::after {
-    content: "✗";
+    content: "✘";
     display: flex;
     align-items: center;
     justify-content: center;
