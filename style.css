@@ -121,8 +121,9 @@ input[type="number"] {
 .pages-read {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .read-toggle {
@@ -181,23 +182,6 @@ input[type="checkbox"]:checked + .toggle::after {
 
 #recommend-img {
     opacity: 0;
-}
-
-#deposit-pseudo-button {
-    width: 100%;
-    height: 55px;
-    background-color: darkgoldenrod;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 13px 0 0 13px;
-}
-
-#deposit-pseudo-button + div {
-    display: flex;
-    align-items: center;
-    width: 30px;
 }
 
 fieldset {
@@ -265,6 +249,28 @@ input[type="radio"] {
 input[type="radio"]:checked ~ .radio-button {
     background-color: #2196F3;
 }  
+
+#deposit-pseudo-button {
+    width: 100%;
+    height: 55px;
+    min-width: 0px;
+    background-color: darkgoldenrod;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px 0 0 13px;
+}
+
+#deposit-pseudo-button-text {
+    min-width: 0;
+}
+
+
+#recommend-img-wrapper {
+    display: flex;
+    align-items: center;
+}
 
 form button {
     padding: 15px;

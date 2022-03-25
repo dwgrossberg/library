@@ -7,6 +7,7 @@ const recommendImg = document.getElementById('recommend-img');
 const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
 const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
+const depositPseudoButtonText = document.getElementById('deposit-pseudo-button-text');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -48,7 +49,7 @@ function addBookToLibrary(e) {
     } else {
         recommend = 'undefined';
     }
-    let book = new Book(title, author, pages, read, recommend)
+    let book = new Book(title, author, pages, read, recommend);
     // store the new Book object to myLibrary
     myLibrary.push(book);
     console.log(book, myLibrary);
@@ -93,10 +94,8 @@ function displayRecommendBook() {
     if (window.getComputedStyle(recommendFieldset).display === 'none') {
         recommendImgWrapper.style.display = 'flex';
         recommendFieldset.style.display = 'flex';
-        depositPseudoButton.style.display = 'none';
     } else {
         recommendImgWrapper.style.display = 'none';
-        depositPseudoButton.style.display = 'flex';
         recommendFieldset.style.display = '';
         recommendImg.src = '';
         recommendImg.style.opacity = 0;
@@ -130,3 +129,9 @@ if (document.querySelector('input[name="recommend"]')) {
         elem.addEventListener('change', insertRecommendThumb)
     })
 }
+
+
+
+
+
+
