@@ -152,6 +152,7 @@ input[type="checkbox"] {
     height: 15px;
     border-radius: 30px;
     font-size: 9px;
+    cursor: pointer;
 }
 
 .toggle::after {
@@ -260,6 +261,7 @@ input[type="radio"]:checked ~ .radio-button {
     align-items: center;
     justify-content: center;
     border-radius: 13px 0 0 13px;
+    cursor: pointer;
 }
 
 #deposit-pseudo-button-text {
@@ -279,6 +281,7 @@ form button {
     background-color: bisque;
     height: 55px;
     width: 40px;
+    cursor: pointer;
 }
 
 .librarian {

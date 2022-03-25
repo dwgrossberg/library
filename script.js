@@ -7,7 +7,7 @@ const recommendImg = document.getElementById('recommend-img');
 const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
 const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
-const depositPseudoButtonText = document.getElementById('deposit-pseudo-button-text');
+const depositBookButton = document.getElementById('deposit-book-button');
 const library = document.getElementById('library');
 const libraryBook = document.getElementsByClassName('book');
 
@@ -32,7 +32,8 @@ myBooks.forEach(book => {
 })
 
 function addBookToLibrary(e) {
-    e.preventDefault();
+    console.log(e);
+    if (e !== 'undefined') e.preventDefault();
     // store user values
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
@@ -57,7 +58,6 @@ function addBookToLibrary(e) {
     depositForm.reset();
     displayLibrary();
     depositForm.style.display = '';
-    recommendBook.style.display = '';
 }
 
 function displayLibrary() {
@@ -130,6 +130,9 @@ if (document.querySelector('input[name="recommend"]')) {
     })
 }
 
+depositPseudoButton.addEventListener('mousedown', () => {
+    depositBookButton.click();
+})
 
 
 
