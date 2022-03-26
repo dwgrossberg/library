@@ -76,8 +76,11 @@ function displayLibrary() {
             newBook.innerHTML = '<span class="delete-book">' + '</span>' + 
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
-            '<h5>' + bookArray[2] + ' pages' + '</h5>' + 
-            '<div id="read-in-book">' + '<span class="read-in-book-toggle">' + bookArray[3] + '</span>' + '</div>' + 
+            '<h5>' + bookArray[2] + ' pages' + '</h5>' +
+            bookArray[3] +
+            '<div class="read-toggle">' + '<p>Have You Read the Book?</p>' +
+            `<input type="checkbox" id="read${myLibrary.indexOf(val)}" name="checkbox" value="${bookArray[3]}">` +
+            '<label for="read" class="toggle">' + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
             bookArray[4];
             library.appendChild(newBook);
         } else return;
@@ -221,3 +224,12 @@ function restoreBooks() {
 }
 
 librarian.addEventListener('mousedown', restoreBooks);
+
+// Set read/not-read toggle checkbox on library Book objects 
+Array.from(libraryBooks).forEach(book => {
+    let toggleRead = document.querySelector(`input[id=read${book.id}]`);
+    if (toggleRead.value === 'false') return;
+    else {
+        toggleRead.checked = true;
+    }
+});
