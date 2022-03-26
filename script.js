@@ -36,10 +36,10 @@ myBooks.forEach(book => {
 
 // Create a new Book object and store it in the array myLibrary
 function addBookToLibrary(e) {
-    if (e !== 'undefined') e.preventDefault();
+    e.preventDefault();
     // store user-entered values
-    let title = document.getElementById('title').value;
-    let author = document.getElementById('author').value;
+    let title = document.getElementById('deposit-title').value;
+    let author = document.getElementById('deposit-author').value;
     let pages = document.getElementById('pages').value;
     let read;
     if (readBook.checked) {
@@ -56,6 +56,7 @@ function addBookToLibrary(e) {
     let book = new Book(title, author, pages, read, recommend);
     // store the new Book object to myLibrary
     myLibrary.push(book);
+    myLibraryUpdated.push(book);
     console.log(book, myLibrary);
     // add the new Book object to the library DOM
     depositForm.reset();
@@ -169,16 +170,30 @@ depositPseudoButton.addEventListener('mousedown', () => {
     depositBookButton.click();
 })
 
-// Delete Book object from the local storage array myLibrary and DOM
-function deleteBook(e) {
+// Delete Book object from the DOM via click (retains original myLibrary array for later use)
+function deleteBookFromDOM(e) {
     if (e.target && e.target.nodeName == 'SPAN') {
         let bookIndex = e.target.parentNode.id;
-        myLibrary.slice(bookIndex, 1);
         let bookToDelete = document.getElementById(`${bookIndex}`);
-        console.log(myLibrary, bookIndex);
+        console.log(myLibrary);
         let deletedBook = library.removeChild(bookToDelete);
     }
 }
 
-library.addEventListener('mousedown', deleteBook);
+library.addEventListener('mousedown', deleteBookFromDOM);
+
+// Remove Book object from the DOM via form (retains original myLibrary array for later use)
+function removeBookFromDOM(e) {
+    e.preventDefault();
+    // store user-entered values
+    let titleToRemove = document.getElementById('remove-title').value;
+    let authorToRemove = document.getElementById('remove-author').value;
+    myLibrary.forEach(obj => {
+        let values = Object.values(obj);
+        if (values.includes(titleToRemove) && values.includes(authorToRemove)) {
+            let objIndex = myLibrary.indexOf(obj);
+            
+        }
+    });
+}
 

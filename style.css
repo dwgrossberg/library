@@ -260,6 +260,7 @@ input[type="radio"]:checked ~ .radio-button {
     justify-content: center;
     border-radius: 13px 0 0 13px;
     cursor: pointer;
+    font-size: 13px;
 }
 
 #deposit-pseudo-button-text {
@@ -282,7 +283,14 @@ input[type="radio"]:checked ~ .radio-button {
 }
 
 #remove-book-button {
+    margin-top: 15px;
     width: 100%;
+    padding: 15px;
+    border-radius: 13px;
+    border: none;
+    background-color: bisque;
+    height: 55px;
+    cursor: pointer; 
 }
 
 .librarian {
