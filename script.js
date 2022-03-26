@@ -14,6 +14,7 @@ const library = document.getElementById('library');
 const libraryBooks = document.getElementsByClassName('book');
 
 let myLibrary = [];
+let myLibraryHistory = [];
 let myBooks = [];
 
 function Book(title, author, pages, read, recommend) {
@@ -56,7 +57,6 @@ function addBookToLibrary(e) {
     let book = new Book(title, author, pages, read, recommend);
     // store the new Book object to myLibrary
     myLibrary.push(book);
-    myLibraryUpdated.push(book);
     console.log(book, myLibrary);
     // add the new Book object to the library DOM
     depositForm.reset();
@@ -170,19 +170,23 @@ depositPseudoButton.addEventListener('mousedown', () => {
     depositBookButton.click();
 })
 
-// Delete Book object from the DOM via click (retains original myLibrary array for later use)
+// Delete Book object from the DOM & myLibrary array via click 
 function deleteBookFromDOM(e) {
     if (e.target && e.target.nodeName == 'SPAN') {
         let bookIndex = e.target.parentNode.id;
         let bookToDelete = document.getElementById(`${bookIndex}`);
-        console.log(myLibrary);
-        let deletedBook = library.removeChild(bookToDelete);
+        // save the deleted Book objects to a new array for later user
+        const objClone = {...myLibrary[bookIndex]};
+        myLibraryHistory.push(objClone);
+        myLibrary[bookIndex] = undefined;
+        console.log(myLibrary, myLibraryHistory);
+        library.removeChild(bookToDelete);
     }
 }
 
 library.addEventListener('mousedown', deleteBookFromDOM);
 
-// Remove Book object from the DOM via form (retains original myLibrary array for later use)
+// Remove Book object from the DOM & myLibrary array via form 
 function removeBookFromDOM(e) {
     e.preventDefault();
     // store user-entered values
