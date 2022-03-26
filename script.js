@@ -170,34 +170,42 @@ depositPseudoButton.addEventListener('mousedown', () => {
     depositBookButton.click();
 })
 
-// Delete Book object from the DOM & myLibrary array via click 
-function deleteBookFromDOM(e) {
+// Remove Book object from the DOM & myLibrary array via click 
+function removeBookByClick(e) {
     if (e.target && e.target.nodeName == 'SPAN') {
         let bookIndex = e.target.parentNode.id;
         let bookToDelete = document.getElementById(`${bookIndex}`);
         // save the deleted Book objects to a new array for later user
-        const objClone = {...myLibrary[bookIndex]};
-        myLibraryHistory.push(objClone);
+        myLibraryHistory.push({...myLibrary[bookIndex]});
         myLibrary[bookIndex] = undefined;
         console.log(myLibrary, myLibraryHistory);
         library.removeChild(bookToDelete);
     }
 }
 
-library.addEventListener('mousedown', deleteBookFromDOM);
+library.addEventListener('mousedown', removeBookByClick);
 
 // Remove Book object from the DOM & myLibrary array via form 
-function removeBookFromDOM(e) {
+function removeBookByForm(e) {
     e.preventDefault();
     // store user-entered values
     let titleToRemove = document.getElementById('remove-title').value;
     let authorToRemove = document.getElementById('remove-author').value;
     myLibrary.forEach(obj => {
-        let values = Object.values(obj);
-        if (values.includes(titleToRemove) && values.includes(authorToRemove)) {
-            let objIndex = myLibrary.indexOf(obj);
-            
+        if (typeof obj === 'undefined') return;
+        else {
+            let values = Object.values(obj);
+            if (values.includes(titleToRemove) && values.includes(authorToRemove)) {
+                let objIndex = myLibrary.indexOf(obj);
+                let bookToDelete = document.getElementById(`${objIndex}`);
+                myLibraryHistory.push({...myLibrary[objIndex]});
+                myLibrary[objIndex] = undefined;
+                console.log(myLibrary, myLibraryHistory);
+                library.removeChild(bookToDelete);
+            }
         }
+        removeForm.reset();
     });
 }
 
+removeForm.addEventListener('submit', removeBookByForm)
