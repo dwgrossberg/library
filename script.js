@@ -2,12 +2,11 @@ const depositBook = document.getElementById('deposit');
 const removeBook = document.getElementById('remove');
 const depositForm = document.getElementById('form-deposit');
 const removeForm = document.getElementById('form-remove');
-const readBook = document.querySelector('input[id="read"]');
+const readBookForm = document.querySelector('input[id="read"]');
 const recommendLegend = document.getElementsByClassName('legend');
 const recommendFieldset = document.getElementById('recommend');
 const recommendImg = document.getElementById('recommend-img');
 const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
-const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
 const librarian = document.querySelector('[src="img/Cartoon-Woman-With-Glasses.svg"]');
@@ -44,13 +43,13 @@ function addBookToLibrary(e) {
     let author = document.getElementById('deposit-author').value;
     let pages = document.getElementById('pages').value;
     let read;
-    if (readBook.checked) {
+    if (readBookForm.checked) {
         read = 'true';
     } else {
-        read = readBook.value;
+        read = readBookForm.value;
     }
     let recommend;
-    if (read === 'true') {
+    if (read === 'true' && document.querySelector('input[name=recommend]:selected'.length > 0)) {
         recommend = document.querySelector('input[type=radio]:checked').value;
     } else {
         recommend = 'undefined';
@@ -79,10 +78,11 @@ function displayLibrary() {
             '<h5>' + bookArray[2] + ' pages' + '</h5>' +
             bookArray[3] +
             '<div class="read-toggle">' + '<p>Have You Read the Book?</p>' +
-            `<input type="checkbox" id="read${myLibrary.indexOf(val)}" name="checkbox" value="${bookArray[3]}">` +
-            '<label for="read" class="toggle">' + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
+            `<input type="checkbox" id="readInput${myLibrary.indexOf(val)}" name="checkbox" value="${bookArray[3]}">` +
+            `<label for="read" class="toggle" id="readLabel${myLibrary.indexOf(val)}">` + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
             bookArray[4];
             library.appendChild(newBook);
+            setBookReadToggle();
         } else return;
     })
 }
@@ -142,7 +142,7 @@ function displayRecommendBook() {
     }
 }
 
-readBook.addEventListener('change', displayRecommendBook);
+readBookForm.addEventListener('change', displayRecommendBook);
 
 // Display the recommended thumb icon and match it with the corresponding value
 function insertRecommendThumb() {
@@ -226,10 +226,13 @@ function restoreBooks() {
 librarian.addEventListener('mousedown', restoreBooks);
 
 // Set read/not-read toggle checkbox on library Book objects 
-Array.from(libraryBooks).forEach(book => {
-    let toggleRead = document.querySelector(`input[id=read${book.id}]`);
-    if (toggleRead.value === 'false') return;
-    else {
-        toggleRead.checked = true;
-    }
-});
+function setBookReadToggle() {
+    Array.from(libraryBooks).forEach(book => {
+        let toggleReadInput = document.querySelector(`input[id=readInput${book.id}]`);
+        if (toggleReadInput.value === 'false') return;
+        else {
+            toggleReadInput.checked = true;
+        }
+        let toggleReadLabel = document.querySelector(`input[id=readLabel${book.id}]`);
+    });
+}
