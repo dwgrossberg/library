@@ -10,6 +10,7 @@ const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
 const recommend = document.querySelector('input[name="recommend"]');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
 const depositBookButton = document.getElementById('deposit-book-button');
+const librarian = document.querySelector('[src="img/Cartoon-Woman-With-Glasses.svg"]');
 const library = document.getElementById('library');
 const libraryBooks = document.getElementsByClassName('book');
 
@@ -33,7 +34,7 @@ myBooks.push(book1, book2, book3);
 myBooks.forEach(book => {
     myLibrary.push(book);
     displayLibrary();
-})
+});
 
 // Create a new Book object and store it in the array myLibrary
 function addBookToLibrary(e) {
@@ -208,4 +209,15 @@ function removeBookByForm(e) {
     });
 }
 
-removeForm.addEventListener('submit', removeBookByForm)
+removeForm.addEventListener('submit', removeBookByForm);
+
+// Restore the deleted library Book objects to the DOM and myLibrary array
+function restoreBooks() {
+    myLibraryHistory.forEach(book => {
+        myLibrary.push(book);
+        displayLibrary()
+        myLibraryHistory = [];
+    })
+}
+
+librarian.addEventListener('mousedown', restoreBooks);
