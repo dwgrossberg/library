@@ -82,6 +82,8 @@ function displayLibrary() {
             `<label for="read" class="toggle" id="readLabel${myLibrary.indexOf(val)}">` + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
             bookArray[4];
             library.appendChild(newBook);
+            
+            
             setBookReadToggle();
         } else return;
     })
@@ -228,11 +230,24 @@ librarian.addEventListener('mousedown', restoreBooks);
 // Set read/not-read toggle checkbox on library Book objects 
 function setBookReadToggle() {
     Array.from(libraryBooks).forEach(book => {
-        let toggleReadInput = document.querySelector(`input[id=readInput${book.id}]`);
+        let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
         if (toggleReadInput.value === 'false') return;
         else {
             toggleReadInput.checked = true;
-        }
-        let toggleReadLabel = document.querySelector(`input[id=readLabel${book.id}]`);
+        }    
+    });
+}
+
+function clickToBookReadToggle() {
+    let toggleReadLabel = document.querySelector(`label[id="readLabel${book.id}"]`);
+    Array.from(libraryBooks).forEach(book => {
+        toggleReadLabel.addEventListener('mousedown', () => {
+            let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
+            if (toggleReadInput.checked === true) {
+                toggleReadInput.checked = false;
+            } else {
+                toggleReadInput.checked = true;
+            }
+        });
     });
 }
