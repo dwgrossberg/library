@@ -58,8 +58,8 @@ function addBookToLibrary(e) {
         read = false;
     }
     let recommend;
-    if (read === 'true' && document.querySelector('input[name=recommend]:selected'.length > 0)) {
-        recommend = document.querySelector('input[type=radio]:checked').value;
+    if (read === true) {
+        recommend = document.querySelector('input[name="recommend"]:checked').value;
     } else {
         recommend = 'undefined';
     }
@@ -71,6 +71,7 @@ function addBookToLibrary(e) {
     depositForm.reset();
     displayLibrary();
     depositForm.style.display = '';
+    recommendImg.style.opacity = 0;
 }
 
 // Display books to the library and add html markup to the Book objects
