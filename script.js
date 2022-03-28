@@ -4,7 +4,7 @@ const depositForm = document.getElementById('form-deposit');
 const removeForm = document.getElementById('form-remove');
 const readBookForm = document.querySelector('input[id="read"]');
 const recommendLegend = document.getElementsByClassName('legend');
-const recommendFieldset = document.getElementById('recommend');
+const recommendFieldset = document.getElementById('recommend-fieldset');
 const recommendImg = document.getElementById('recommend-img');
 const recommendImgWrapper = document.getElementById('recommend-img-wrapper');
 const depositPseudoButton = document.getElementById('deposit-pseudo-button');
@@ -12,17 +12,26 @@ const depositBookButton = document.getElementById('deposit-book-button');
 const librarian = document.querySelector('[src="img/Cartoon-Woman-With-Glasses.svg"]');
 const library = document.getElementById('library');
 const libraryBooks = document.getElementsByClassName('book');
+const deleteBooks = document.getElementsByClassName('delete-book');
 
 let myLibrary = [];
 let myLibraryHistory = [];
 let myBooks = [];
 
+// Book Object constructor
 function Book(title, author, pages, read, recommend) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.recommend = recommend;
+    this.isRead = function() {
+        if (this.read === false) {
+            this.read = true;
+        } else {
+            this.read = false;
+        }
+    }
 }
 
 // Default books on pageload
@@ -72,17 +81,70 @@ function displayLibrary() {
             let newBook = document.createElement('div');
             newBook.classList.add('book');
             newBook.setAttribute('id', myLibrary.indexOf(val));
-            newBook.innerHTML = '<span class="delete-book">' + '</span>' + 
+            newBook.innerHTML = 
+            '<span class="delete-book">' + '</span>' + 
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
             '<h5>' + bookArray[2] + ' pages' + '</h5>' +
-            bookArray[3] +
-            '<div class="read-toggle">' + '<p>Have You Read the Book?</p>' +
-            `<input type="checkbox" id="readInput${myLibrary.indexOf(val)}" name="checkbox" value="${bookArray[3]}">` +
-            `<label for="read" class="toggle" id="readLabel${myLibrary.indexOf(val)}">` + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
-            bookArray[4];
+            // Toggle Book readStatus
+            '<div class="read-toggle">' + 
+                '<p>Have You Read the Book?</p>' +
+                `<input type="checkbox" id="readInput${myLibrary.indexOf(val)}" name="checkbox" value="${bookArray[3]}">` +
+                `<label for="read" class="toggle" id="readLabel${myLibrary.indexOf(val)}">` + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + 
+            '</div>' +
+            // Toggle Book recommendedStatus
+            `<div id="recommend-wrapper-Book${myLibrary.indexOf(val)}">` +
+                `<fieldset id="recommend-fieldset-Book${myLibrary.indexOf(val)}">` +
+                '<div class="legend">' +
+                    '<legend>Would You Recommend it to a Friend?</legend>' +
+                '</div>' +
+                '<div class="radio-wrapper">' + '<span class="recommend-Book-status">' + '</span>' + 
+                    `<label for="yes-Book${myLibrary.indexOf(val)}">` +
+                        `<input type="radio" id="yes-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="yes">` +
+                        '<span class="radio-button">' + '</span>' + 'Yes' +
+                    '</label>' +
+                    `<label for="no-Book${myLibrary.indexOf(val)}">` +
+                        `<input type="radio" id="no-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="no">` +
+                        '<span class="radio-button">' + '</span>' + 'No' +
+                    '</label>' +
+                    `<label for="maybe-so-Book${myLibrary.indexOf(val)}">` +
+                        `<input type="radio" id="maybe-so-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="maybe-so">` +
+                        '<span class="radio-button">' + '</span>' + 'Maybe So' +
+                    '</label>' +
+                '</div>' +
+                '</fieldset>' +
+            '</div>';
+
             library.appendChild(newBook);
             setBookReadToggle();
+            // Toggle readStatus on book objects through the DOM
+            let toggleReadInput = document.querySelector(`input[id="readInput${myLibrary.indexOf(val)}"]`);
+            let toggleReadLabel = document.querySelector(`label[id="readLabel${myLibrary.indexOf(val)}"]`);
+            toggleReadLabel.addEventListener('mousedown', () => {
+                if (toggleReadInput.checked === true) {
+                    toggleReadInput.checked = false;
+                    toggleReadInput.value = false;
+                    myLibrary[`${myLibrary.indexOf(val)}`].isRead();
+                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
+                } else {
+                    toggleReadInput.checked = true;
+                    toggleReadInput.value = true;
+                    myLibrary[`${myLibrary.indexOf(val)}`].isRead();
+                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
+                }
+            });
+
+            // Update the recommendedBook status
+            let recommendYes = document.querySelector(`input[id="yes-Book${myLibrary.indexOf(val)}"`);
+            let recommendNo = document.querySelector(`input[id="no-Book${myLibrary.indexOf(val)}"`);
+            let recommendMaybeSo = document.querySelector(`input[id="maybe-so-Book${myLibrary.indexOf(val)}"`);
+            if (bookArray[4] === 'yes') {
+                recommendYes.checked = true;
+            } else if (bookArray[4] === 'no') {
+                recommendNo.checked = true;
+            } else if (bookArray[4] === 'maybe-so') {
+                recommendMaybeSo.checked = true;
+            }
 
         } else return;
     })
@@ -188,7 +250,10 @@ function removeBookByClick(e) {
     }
 }
 
-library.addEventListener('mousedown', removeBookByClick);
+Array.from(deleteBooks).forEach(span => {
+ span.addEventListener('mousedown', removeBookByClick);
+})
+
 
 // Remove Book object from the DOM & myLibrary array via form 
 function removeBookByForm(e) {
@@ -219,14 +284,14 @@ removeForm.addEventListener('submit', removeBookByForm);
 function restoreBooks() {
     myLibraryHistory.forEach(book => {
         myLibrary.push(book);
-        displayLibrary()
+        displayLibrary();
         myLibraryHistory = [];
     })
 }
 
 librarian.addEventListener('mousedown', restoreBooks);
 
-// Set read/not-read toggle checkbox on library Book objects 
+// Set read/not-read toggle checkbox on library Book objects to correspond with value
 function setBookReadToggle() {
     Array.from(libraryBooks).forEach(book => {
         let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
@@ -237,62 +302,9 @@ function setBookReadToggle() {
     });
 }
 
-function clickBookReadToggle() {
+// Set recommended Book status on library Book objects
+function setBookRecommendedStatus() {
     Array.from(libraryBooks).forEach(book => {
-        let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
-        let toggleReadLabel = document.querySelector(`label[id="readLabel${book.id}"]`);
-        toggleReadLabel.addEventListener('mousedown', () => {
-            if (toggleReadInput.checked === true) {
-                toggleReadInput.checked = false;
-                toggleReadInput.value = false;
-                myLibrary[`${book.id}`].isRead();
-                console.log(myLibrary[`${book.id}`].read);
-            } else {
-                toggleReadInput.checked = true;
-                toggleReadInput.value = true;
-                myLibrary[`${book.id}`].isRead();
-                console.log(myLibrary[`${book.id}`].read);
-            }
-        });
-    });
+
+    })
 }
-
-clickBookReadToggle();
-
-// Update Book prototype to reflect read status
-Book.prototype.isRead = function() {
-    console.log(this.read);
-    if (this.read === false) {
-        this.read = true;
-    } else {
-        this.read = false;
-    }
-}
-
-// Set up mutation observer to attach clickBookReadToggle function to dynmically created Book objects
-const config = { attributes: false, childList: true, subtree: false };
-const callback = function (mutationsList, observer) {
-    for (const mutation of mutationsList) {
-        if (mutation.type === 'childList' && mutation.addedNodes[0] !== undefined) {
-            console.log('child Book node added:', mutation.addedNodes[0]);
-            let toggleReadInput = document.querySelector(`input[id="readInput${mutation.addedNodes[0].id}"]`);
-            let toggleReadLabel = document.querySelector(`label[id="readLabel${mutation.addedNodes[0].id}"]`);
-            toggleReadLabel.addEventListener('mousedown', () => {
-                if (toggleReadInput.checked === true) {
-                    toggleReadInput.checked = false;
-                    toggleReadInput.value = false;
-                    myLibrary[`${mutation.addedNodes[0].id}`].isRead();
-                    console.log(myLibrary[`${mutation.addedNodes[0].id}`].read);
-                } else {
-                    toggleReadInput.checked = true;
-                    toggleReadInput.value = true;
-                    myLibrary[`${mutation.addedNodes[0].id}`].isRead();
-                    console.log(myLibrary[`${mutation.addedNodes[0].id}`].read);
-                }
-            });
-        }
-    }
-}
-
-const observer = new MutationObserver(callback);
-observer.observe(library, config);

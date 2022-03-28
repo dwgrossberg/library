@@ -164,12 +164,12 @@ input[type="checkbox"] {
     transition: all 0.3s;
 }
 
-input[type="checkbox"]:checked + .toggle::after {
+input[name="checkbox"]:checked + .toggle::after {
     left : 25px; 
     background-color: aqua;
 }
 
-.radio-submit-wrapper {
+#radio-submit-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -179,11 +179,28 @@ input[type="checkbox"]:checked + .toggle::after {
 
 }
 
-#recommend-img {
+div[id^="recommend-wrapper"] {
+    display: flex;
+    align-items: center;
+
+}
+
+#recommend-img-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+img[id^="recommend-img"] {
     opacity: 0;
 }
 
-fieldset {
+fieldset[id^="recommend-fieldset"] {
+    display: flex;
+    border: none;
+    font-size: 10px;
+}
+
+#recommend-fieldset {
     border: none;
     display: none;
     font-size: 10px;
@@ -267,11 +284,6 @@ input[type="radio"]:checked ~ .radio-button {
     min-width: 0;
 }
 
-#recommend-img-wrapper {
-    display: flex;
-    align-items: center;
-}
-
 #deposit-book-button {
     padding: 15px;
     border-radius: 0 13px 13px 0;
@@ -344,8 +356,24 @@ input[type="radio"]:checked ~ .radio-button {
     background-color: azure;
     font-family: "Lato", sans-serif;
     font-size: clamp(.5rem, 11px, 2rem);
-    padding: 10px 15px;
+    padding: 15px 15px;
     position: relative;
+}
+
+.recommend-Book-status {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.recommend-Book-status::after {
+    display: inline-block;
+    content: '';
+    background-image: url('/img/thumb-up-outline.png');
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+
 }
 
 .delete-book {
