@@ -238,11 +238,12 @@ function setBookReadToggle() {
     });
 }
 
-function clickToBookReadToggle() {
-    let toggleReadLabel = document.querySelector(`label[id="readLabel${book.id}"]`);
+function clickBookReadToggle() {
     Array.from(libraryBooks).forEach(book => {
+        let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
+        let toggleReadLabel = document.querySelector(`label[id="readLabel${book.id}"]`);
         toggleReadLabel.addEventListener('mousedown', () => {
-            let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
+            console.log(toggleReadInput, toggleReadLabel);
             if (toggleReadInput.checked === true) {
                 toggleReadInput.checked = false;
             } else {
@@ -251,3 +252,5 @@ function clickToBookReadToggle() {
         });
     });
 }
+
+clickBookReadToggle();
