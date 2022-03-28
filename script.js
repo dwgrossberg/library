@@ -82,9 +82,8 @@ function displayLibrary() {
             `<label for="read" class="toggle" id="readLabel${myLibrary.indexOf(val)}">` + '<p>Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>' + '</label>' + '</div>';
             bookArray[4];
             library.appendChild(newBook);
-            
-            
             setBookReadToggle();
+
         } else return;
     })
 }
@@ -243,7 +242,6 @@ function clickBookReadToggle() {
         let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
         let toggleReadLabel = document.querySelector(`label[id="readLabel${book.id}"]`);
         toggleReadLabel.addEventListener('mousedown', () => {
-            console.log(toggleReadInput, toggleReadLabel);
             if (toggleReadInput.checked === true) {
                 toggleReadInput.checked = false;
             } else {
@@ -254,3 +252,27 @@ function clickBookReadToggle() {
 }
 
 clickBookReadToggle();
+
+
+// Set up mutation observer to attach clickBookReadToggle function to new Book objects
+const config = { attributes: false, childList: true, subtree: false };
+const callback = function (mutationsList, observer) {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            console.log('child Book node added:', mutation.addedNodes);
+            let toggleReadInput = document.querySelector(`input[id="readInput${mutation.addedNodes[0].id}"]`);
+            let toggleReadLabel = document.querySelector(`label[id="readLabel${mutation.addedNodes[0].id}"]`);
+            console.log(toggleReadInput, toggleReadLabel);
+            toggleReadLabel.addEventListener('mousedown', () => {
+                if (toggleReadInput.checked === true) {
+                    toggleReadInput.checked = false;
+                } else {
+                    toggleReadInput.checked = true;
+                }
+            });
+        }
+    }
+}
+
+const observer = new MutationObserver(callback);
+observer.observe(library, config);
