@@ -44,9 +44,9 @@ function addBookToLibrary(e) {
     let pages = document.getElementById('pages').value;
     let read;
     if (readBookForm.checked) {
-        read = 'true';
+        read = true;
     } else {
-        read = readBookForm.value;
+        read = false;
     }
     let recommend;
     if (read === 'true' && document.querySelector('input[name=recommend]:selected'.length > 0)) {
@@ -244,8 +244,14 @@ function clickBookReadToggle() {
         toggleReadLabel.addEventListener('mousedown', () => {
             if (toggleReadInput.checked === true) {
                 toggleReadInput.checked = false;
+                toggleReadInput.value = false;
+                myLibrary[`${book.id}`].isRead();
+                console.log(myLibrary[`${book.id}`].read);
             } else {
                 toggleReadInput.checked = true;
+                toggleReadInput.value = true;
+                myLibrary[`${book.id}`].isRead();
+                console.log(myLibrary[`${book.id}`].read);
             }
         });
     });
@@ -253,21 +259,35 @@ function clickBookReadToggle() {
 
 clickBookReadToggle();
 
+// Update Book prototype to reflect read status
+Book.prototype.isRead = function() {
+    console.log(this.read);
+    if (this.read === false) {
+        this.read = true;
+    } else {
+        this.read = false;
+    }
+}
 
-// Set up mutation observer to attach clickBookReadToggle function to new Book objects
+// Set up mutation observer to attach clickBookReadToggle function to dynmically created Book objects
 const config = { attributes: false, childList: true, subtree: false };
 const callback = function (mutationsList, observer) {
     for (const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            console.log('child Book node added:', mutation.addedNodes);
+        if (mutation.type === 'childList' && mutation.addedNodes[0] !== undefined) {
+            console.log('child Book node added:', mutation.addedNodes[0]);
             let toggleReadInput = document.querySelector(`input[id="readInput${mutation.addedNodes[0].id}"]`);
             let toggleReadLabel = document.querySelector(`label[id="readLabel${mutation.addedNodes[0].id}"]`);
-            console.log(toggleReadInput, toggleReadLabel);
             toggleReadLabel.addEventListener('mousedown', () => {
                 if (toggleReadInput.checked === true) {
                     toggleReadInput.checked = false;
+                    toggleReadInput.value = false;
+                    myLibrary[`${mutation.addedNodes[0].id}`].isRead();
+                    console.log(myLibrary[`${mutation.addedNodes[0].id}`].read);
                 } else {
                     toggleReadInput.checked = true;
+                    toggleReadInput.value = true;
+                    myLibrary[`${mutation.addedNodes[0].id}`].isRead();
+                    console.log(myLibrary[`${mutation.addedNodes[0].id}`].read);
                 }
             });
         }
