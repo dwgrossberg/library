@@ -82,8 +82,9 @@ function displayLibrary() {
             let newBook = document.createElement('div');
             newBook.classList.add('book');
             newBook.setAttribute('id', myLibrary.indexOf(val));
+            // HTML markup for Book objects displayed in the library
             newBook.innerHTML = 
-            '<span class="delete-book">' + '</span>' + 
+            '<span class="delete-Book">' + '</span>' + 
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
             '<h5>' + bookArray[2] + ' pages' + '</h5>' +
@@ -240,7 +241,7 @@ depositPseudoButton.addEventListener('mousedown', () => {
 
 // Remove Book object from the DOM & myLibrary array via click 
 function removeBookByClick(e) {
-    if (e.target && e.target.nodeName == 'SPAN') {
+    if (e.target && e.target.classList[0] == 'delete-Book') {
         let bookIndex = e.target.parentNode.id;
         let bookToDelete = document.getElementById(`${bookIndex}`);
         // save the deleted Book objects to a new array for later user
@@ -251,10 +252,7 @@ function removeBookByClick(e) {
     }
 }
 
-Array.from(deleteBooks).forEach(span => {
- span.addEventListener('mousedown', removeBookByClick);
-})
-
+library.addEventListener('mousedown', removeBookByClick);
 
 // Remove Book object from the DOM & myLibrary array via form 
 function removeBookByForm(e) {

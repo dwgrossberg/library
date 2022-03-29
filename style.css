@@ -356,7 +356,7 @@ input[type="radio"]:checked ~ .radio-button {
     background-color: azure;
     font-family: "Lato", sans-serif;
     font-size: clamp(.5rem, 11px, 2rem);
-    padding: 15px 15px;
+    padding: 20px 15px 10px 15px;
     position: relative;
 }
 
@@ -376,7 +376,7 @@ input[type="radio"]:checked ~ .radio-button {
 
 }
 
-.delete-book {
+.delete-Book {
     background-color: grey;
     width: 15px;
     height: 15px;
@@ -387,7 +387,7 @@ input[type="radio"]:checked ~ .radio-button {
     cursor: pointer;
 }
 
-.delete-book::after {
+.delete-Book::after {
     content: "✘";
     display: flex;
     align-items: center;
