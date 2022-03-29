@@ -48,7 +48,7 @@ function Book(title, author, pages, read, recommend) {
 // Default books on pageload
 const book1 = new Book('Mirrors: Stories of Almost Everyone', 'Eduardo Galeano', 401, false);
 const book2 = new Book('Henry and June', 'Anais Nin', 281, true, 'yes');
-const book3 = new Book('Journey to the End of the Night', 'Louis-Ferdinand Céline', 464, true, 'maybe-so');
+const book3 = new Book('Journey to the End of the Night', 'Louis-Ferdinand Céline', 464, true, 'maybeSo');
 myBooks.push(book1, book2, book3);
 myBooks.forEach(book => {
     myLibrary.push(book);
@@ -153,13 +153,13 @@ function displayLibrary() {
                     thumbIcon.style.backgroundImage = '';
                     myLibrary[`${myLibrary.indexOf(val)}`].isRead();                   
                     myLibrary[`${myLibrary.indexOf(val)}`].isRecommended('undefined');           
-                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read, myLibrary[`${myLibrary.indexOf(val)}`.recommend]);
+                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
                 } else {
                     toggleReadInput.checked = true;
                     toggleReadInput.value = true;
                     toggleRecommendMenu.style.display = 'flex';
                     myLibrary[`${myLibrary.indexOf(val)}`].isRead();
-                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
+                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read, myLibrary[`${myLibrary.indexOf(val)}`.recommend]);
                 }
             });
 
@@ -278,7 +278,7 @@ function insertRecommendThumb() {
     } else if (recommendedBook.value === 'no') {
         recommendImg.src = 'img/thumb-down-outline.png';
         recommendImg.style.opacity = 1;
-    } else if (recommendedBook.value === 'maybe-so') {
+    } else if (recommendedBook.value === 'maybeSo') {
         recommendImg.src = 'img/thumbs-up-down-outline.png';
         recommendImg.style.opacity = 1;
     } else {

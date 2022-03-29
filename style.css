@@ -266,9 +266,25 @@ span[class^="radio-button"]:hover {
     background-color: #ccc;
 }
 
+span[class^="radio-button"]::after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 4.5px;
+	left: 4.5px;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: white;
+}
+
 input[type="radio"]:checked ~ span[class^="radio-button"] {
     background-color: #2196F3;
 }  
+
+input[type="radio"]:checked ~ span[class^="radio-button"]::after {
+    display: block;
+}
 
 #deposit-pseudo-button {
     width: 100%;
