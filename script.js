@@ -39,6 +39,8 @@ function Book(title, author, pages, read, recommend) {
             this.recommend = 'no';
         } else if (e === 'maybeSo') {
             this.recommend = 'maybeSo';
+        } else if (e === 'undefined') {
+            this.recommend = undefined;
         }
     }
 }
@@ -130,20 +132,28 @@ function displayLibrary() {
             library.appendChild(newBook);
 
             // Set readStatus toggle on library Book objects 
-
             setBookReadToggle();
 
             // Toggle readStatus on book objects through the DOM
-            let toggleReadInput = document.querySelector(`input[id="readInput${myLibrary.indexOf(val)}"]`);
-            let toggleReadLabel = document.querySelector(`label[id="readLabel${myLibrary.indexOf(val)}"]`);
-            let toggleRecommendMenu = document.querySelector(`div[id="recommend-wrapper-Book${myLibrary.indexOf(val)}"`)
+            const toggleReadInput = document.querySelector(`input[id="readInput${myLibrary.indexOf(val)}"]`);
+            const toggleReadLabel = document.querySelector(`label[id="readLabel${myLibrary.indexOf(val)}"]`);
+            const toggleRecommendMenu = document.querySelector(`div[id="recommend-wrapper-Book${myLibrary.indexOf(val)}"`)
+            const thumbIcon = document.getElementById(`recommend-status-Book${myLibrary.indexOf(val)}`);
+            const recommendYes = document.querySelector(`input[id="yes-Book${myLibrary.indexOf(val)}"`);
+            const recommendNo = document.querySelector(`input[id="no-Book${myLibrary.indexOf(val)}"`);
+            const recommendMaybeSo = document.querySelector(`input[id="maybe-so-Book${myLibrary.indexOf(val)}"`);
             toggleReadLabel.addEventListener('mousedown', () => {
                 if (toggleReadInput.checked === true) {
                     toggleReadInput.checked = false;
                     toggleReadInput.value = false;
                     toggleRecommendMenu.style.display = 'none';
-                    myLibrary[`${myLibrary.indexOf(val)}`].isRead();
-                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
+                    recommendYes.checked = false;
+                    recommendNo.checked = false;
+                    recommendMaybeSo.checked = false;
+                    thumbIcon.style.backgroundImage = '';
+                    myLibrary[`${myLibrary.indexOf(val)}`].isRead();                   
+                    myLibrary[`${myLibrary.indexOf(val)}`].isRecommended('undefined');           
+                    console.log(myLibrary[`${myLibrary.indexOf(val)}`].read, myLibrary[`${myLibrary.indexOf(val)}`.recommend]);
                 } else {
                     toggleReadInput.checked = true;
                     toggleReadInput.value = true;
@@ -154,10 +164,11 @@ function displayLibrary() {
             });
 
             // Update the recommendedBook status based on Book object
-            let recommendYes = document.querySelector(`input[id="yes-Book${myLibrary.indexOf(val)}"`);
-            let recommendNo = document.querySelector(`input[id="no-Book${myLibrary.indexOf(val)}"`);
-            let recommendMaybeSo = document.querySelector(`input[id="maybe-so-Book${myLibrary.indexOf(val)}"`);
-            if (bookArray[4] === 'yes') {
+            if (bookArray[4] === undefined) {
+                recommendYes.checked = false;
+                recommendNo.checked = false;
+                recommendMaybeSo.checked = false;
+            } else if (bookArray[4] === 'yes') {
                 recommendYes.checked = true;
             } else if (bookArray[4] === 'no') {
                 recommendNo.checked = true;
@@ -166,18 +177,17 @@ function displayLibrary() {
             }
 
             // Toggle recommendedStatus on book objects through the DOM
-            let recommendYesLabel = document.querySelector(`label[for="yes-Book${myLibrary.indexOf(val)}"`);
-            let recommendNoLabel = document.querySelector(`label[for="no-Book${myLibrary.indexOf(val)}"`);
-            let recommendMaybeSoLabel = document.querySelector(`label[for="maybe-so-Book${myLibrary.indexOf(val)}"`);
-            let labels = [recommendYesLabel, recommendNoLabel, recommendMaybeSoLabel];
+            const recommendYesLabel = document.querySelector(`label[for="yes-Book${myLibrary.indexOf(val)}"`);
+            const recommendNoLabel = document.querySelector(`label[for="no-Book${myLibrary.indexOf(val)}"`);
+            const recommendMaybeSoLabel = document.querySelector(`label[for="maybe-so-Book${myLibrary.indexOf(val)}"`);
+            const labels = [recommendYesLabel, recommendNoLabel, recommendMaybeSoLabel];
             labels.forEach(label => label.addEventListener(('mousedown'), (e) => {
                 myLibrary[`${myLibrary.indexOf(val)}`].isRecommended(e.target.classList[1]);
                 console.log(myLibrary[`${myLibrary.indexOf(val)}`].recommend);
             }));
 
             // And update the thumb icon on top left of Book objects
-            let recommends = [recommendYes, recommendNo, recommendMaybeSo];
-            let thumbIcon = document.getElementById(`recommend-status-Book${myLibrary.indexOf(val)}`);
+            const recommends = [recommendYes, recommendNo, recommendMaybeSo];
             if (recommendYes.checked === true) {
                 thumbIcon.style.backgroundImage = 'url("/img/thumb-up-outline.png")';
             } else if (recommendNo.checked === true) {
@@ -193,10 +203,10 @@ function displayLibrary() {
                     thumbIcon.style.backgroundImage = 'url("img/thumb-down-outline.png")';
                 } else if (recommendMaybeSo.checked === true) {
                     thumbIcon.style.backgroundImage = 'url("img/thumbs-up-down-outline.png")';
+                } else {
+                    thumbIcon.style.backgroundImage = '';
                 }
             }));
-            
-
 
         } else return;
     })
@@ -342,10 +352,13 @@ librarian.addEventListener('mousedown', restoreBooks);
 
 function setBookReadToggle() {
     Array.from(libraryBooks).forEach(book => {
-        let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
-        if (toggleReadInput.value === 'false') return;
-        else {
+        const toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);
+        const toggleRecommendMenu = document.querySelector(`div[id="recommend-wrapper-Book${book.id}"`)
+        if (toggleReadInput.value === 'false') {
+            toggleRecommendMenu.style.display = '';
+        } else {
             toggleReadInput.checked = true;
+            toggleRecommendMenu.style.display = 'flex';
         }    
     });
 }
