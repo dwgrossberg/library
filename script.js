@@ -101,17 +101,17 @@ function displayLibrary() {
                     '<legend>Would You Recommend it to a Friend?</legend>' +
                 '</div>' +
                 '<div class="radio-wrapper">' + '<span class="recommend-Book-status">' + '</span>' + 
-                    `<label for="yes-Book${myLibrary.indexOf(val)}">` +
-                        `<input type="radio" id="yes-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="yes">` +
-                        '<span class="radio-button">' + '</span>' + 'Yes' +
+                    `<label for="yes-Book${myLibrary.indexOf(val)}" class="label yes">` +
+                        `<input type="radio" id="yes-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book yes">` +
+                        '<span class="radio-button-Book yes">' + '</span>' + 'Yes' +
                     '</label>' +
-                    `<label for="no-Book${myLibrary.indexOf(val)}">` +
-                        `<input type="radio" id="no-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="no">` +
-                        '<span class="radio-button">' + '</span>' + 'No' +
+                    `<label for="no-Book${myLibrary.indexOf(val)}" class="label no">` +
+                        `<input type="radio" id="no-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book no">` +
+                        '<span class="radio-button-Book no">' + '</span>' + 'No' +
                     '</label>' +
-                    `<label for="maybe-so-Book${myLibrary.indexOf(val)}">` +
-                        `<input type="radio" id="maybe-so-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" value="maybe-so">` +
-                        '<span class="radio-button">' + '</span>' + 'Maybe So' +
+                    `<label for="maybe-so-Book${myLibrary.indexOf(val)}" class="label maybe-so">` +
+                        `<input type="radio" id="maybe-so-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book maybeSo">` +
+                        '<span class="radio-button-Book maybeSo">' + '</span>' + 'Maybe So' +
                     '</label>' +
                 '</div>' +
                 '</fieldset>' +
@@ -119,6 +119,7 @@ function displayLibrary() {
 
             library.appendChild(newBook);
             setBookReadToggle();
+
             // Toggle readStatus on book objects through the DOM
             let toggleReadInput = document.querySelector(`input[id="readInput${myLibrary.indexOf(val)}"]`);
             let toggleReadLabel = document.querySelector(`label[id="readLabel${myLibrary.indexOf(val)}"]`);
@@ -136,7 +137,7 @@ function displayLibrary() {
                 }
             });
 
-            // Update the recommendedBook status
+            // Update the recommendedBook status based on Book object
             let recommendYes = document.querySelector(`input[id="yes-Book${myLibrary.indexOf(val)}"`);
             let recommendNo = document.querySelector(`input[id="no-Book${myLibrary.indexOf(val)}"`);
             let recommendMaybeSo = document.querySelector(`input[id="maybe-so-Book${myLibrary.indexOf(val)}"`);
@@ -147,6 +148,18 @@ function displayLibrary() {
             } else if (bookArray[4] === 'maybe-so') {
                 recommendMaybeSo.checked = true;
             }
+
+            // Toggle recommendedStatus on book objects through the DOM
+            let recommendYesLabel = document.querySelector(`label[for="yes-Book${myLibrary.indexOf(val)}"`);
+            let recommendNoLabel = document.querySelector(`label[for="no-Book${myLibrary.indexOf(val)}"`);
+            let recommendMaybeSoLabel = document.querySelector(`label[for="maybe-so-Book${myLibrary.indexOf(val)}"`);
+            let labels = [recommendYesLabel, recommendNoLabel, recommendMaybeSoLabel];
+            labels.forEach(label => label.addEventListener(('mousedown'), (e) => {
+                console.log(e.target.classList[1]);
+            }));
+            
+
+
 
         } else return;
     })

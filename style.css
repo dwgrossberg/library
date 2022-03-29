@@ -1,3 +1,5 @@
+/* General body structure and grid template */
+
 body, * {
     margin: 0;
     padding: 0;
@@ -31,6 +33,8 @@ body {
 .library {
     outline: blueviolet solid 1px;
 }
+
+/* Help desk - lefthand side, including both forms */
 
 .help-desk {
     grid-area: 1 / 1 / 2 / 2;
@@ -248,7 +252,7 @@ input[type="radio"] {
     left: 0;
 }
 
-.radio-button {
+span[class^="radio-button"] {
     position: absolute;
     top: 0;
     left: 0;
@@ -258,11 +262,11 @@ input[type="radio"] {
     border-radius: 50%;
 }
 
-.radio-button:hover {
+span[class^="radio-button"]:hover {
     background-color: #ccc;
 }
 
-input[type="radio"]:checked ~ .radio-button {
+input[type="radio"]:checked ~ span[class^="radio-button"] {
     background-color: #2196F3;
 }  
 
@@ -326,6 +330,8 @@ input[type="radio"]:checked ~ .radio-button {
 .ladder-rung {
     outline: goldenrod dotted 1px;
 }
+
+/* Library display - righthand side of the page */
 
 #library {
     grid-area: 1 / 3 / 2 / 4;
