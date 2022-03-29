@@ -170,6 +170,7 @@ function displayLibrary() {
             }));
 
             // And update the thumb icon on top left of Book objects
+            let recommends = [recommendYes, recommendNo, recommendMaybeSo];
             let thumbIcon = document.getElementById(`recommend-status-Book${myLibrary.indexOf(val)}`);
             if (recommendYes.checked === true) {
                 thumbIcon.style.backgroundImage = 'url("/img/thumb-up-outline.png")';
@@ -178,6 +179,16 @@ function displayLibrary() {
             } else if (recommendMaybeSo.checked === true) {
                 thumbIcon.style.backgroundImage = 'url("img/thumbs-up-down-outline.png")';
             }
+            // Dynamically add event listeners to new Book objects
+            recommends.forEach(elem => elem.addEventListener('change', () => {
+                if (recommendYes.checked === true) {
+                    thumbIcon.style.backgroundImage = 'url("/img/thumb-up-outline.png")';
+                } else if (recommendNo.checked === true) {
+                    thumbIcon.style.backgroundImage = 'url("img/thumb-down-outline.png")';
+                } else if (recommendMaybeSo.checked === true) {
+                    thumbIcon.style.backgroundImage = 'url("img/thumbs-up-down-outline.png")';
+                }
+            }));
             
 
 
@@ -334,9 +345,4 @@ function setBookReadToggle() {
     });
 }
 
-// Set recommended Book status on library Book objects
-function setBookRecommendedStatus() {
-    Array.from(libraryBooks).forEach(book => {
-
-    })
-}
+            
