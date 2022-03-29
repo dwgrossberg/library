@@ -94,6 +94,7 @@ function displayLibrary() {
             // HTML markup for Book objects displayed in the library
             newBook.innerHTML = 
             '<span class="delete-Book">' + '</span>' + 
+            `<span id="recommend-status-Book${myLibrary.indexOf(val)}">` + '</span>' +
             '<h3>' + bookArray[0] + '</h3>' + 
             '<h4>' + bookArray[1] + '</h4>' + 
             '<h5>' + bookArray[2] + ' pages' + '</h5>' +
@@ -109,7 +110,7 @@ function displayLibrary() {
                 '<div class="legend">' +
                     '<legend>Would You Recommend it to a Friend?</legend>' +
                 '</div>' +
-                '<div class="radio-wrapper">' + '<span class="recommend-Book-status">' + '</span>' + 
+                '<div class="radio-wrapper">' + 
                     `<label for="yes-Book${myLibrary.indexOf(val)}" class="label yes">` +
                         `<input type="radio" id="yes-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book yes">` +
                         '<span class="radio-button-Book yes">' + '</span>' + 'Yes' +
@@ -167,8 +168,17 @@ function displayLibrary() {
                 myLibrary[`${myLibrary.indexOf(val)}`].isRecommended(e.target.classList[1]);
                 console.log(myLibrary[`${myLibrary.indexOf(val)}`].recommend);
             }));
-            
 
+            // And update the thumb icon on top left of Book objects
+            let thumbIcon = document.getElementById(`recommend-status-Book${myLibrary.indexOf(val)}`);
+            if (recommendYes.checked === true) {
+                thumbIcon.style.backgroundImage = 'url("/img/thumb-up-outline.png")';
+            } else if (recommendNo.checked === true) {
+                thumbIcon.style.backgroundImage = 'url("img/thumb-down-outline.png")';
+            } else if (recommendMaybeSo.checked === true) {
+                thumbIcon.style.backgroundImage = 'url("img/thumbs-up-down-outline.png")';
+            }
+            
 
 
         } else return;

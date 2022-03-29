@@ -366,20 +366,14 @@ input[type="radio"]:checked ~ span[class^="radio-button"] {
     position: relative;
 }
 
-.recommend-Book-status {
+span[id^="recommend-status-Book"] {
     position: absolute;
     top: 5px;
     left: 5px;
-}
-
-.recommend-Book-status::after {
-    display: inline-block;
-    content: '';
-    background-image: url('/img/thumb-up-outline.png');
     background-size: 100%;
+    background-image: url('');
     width: 20px;
     height: 20px;
-
 }
 
 .delete-Book {
