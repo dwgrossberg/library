@@ -128,20 +128,26 @@ function displayLibrary() {
             '</div>';
 
             library.appendChild(newBook);
+
+            // Set readStatus toggle on library Book objects 
+
             setBookReadToggle();
 
             // Toggle readStatus on book objects through the DOM
             let toggleReadInput = document.querySelector(`input[id="readInput${myLibrary.indexOf(val)}"]`);
             let toggleReadLabel = document.querySelector(`label[id="readLabel${myLibrary.indexOf(val)}"]`);
+            let toggleRecommendMenu = document.querySelector(`div[id="recommend-wrapper-Book${myLibrary.indexOf(val)}"`)
             toggleReadLabel.addEventListener('mousedown', () => {
                 if (toggleReadInput.checked === true) {
                     toggleReadInput.checked = false;
                     toggleReadInput.value = false;
+                    toggleRecommendMenu.style.display = 'none';
                     myLibrary[`${myLibrary.indexOf(val)}`].isRead();
                     console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
                 } else {
                     toggleReadInput.checked = true;
                     toggleReadInput.value = true;
+                    toggleRecommendMenu.style.display = 'flex';
                     myLibrary[`${myLibrary.indexOf(val)}`].isRead();
                     console.log(myLibrary[`${myLibrary.indexOf(val)}`].read);
                 }
@@ -334,7 +340,6 @@ function restoreBooks() {
 
 librarian.addEventListener('mousedown', restoreBooks);
 
-// Set read/not-read toggle checkbox on library Book objects to correspond with value
 function setBookReadToggle() {
     Array.from(libraryBooks).forEach(book => {
         let toggleReadInput = document.querySelector(`input[id="readInput${book.id}"]`);

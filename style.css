@@ -401,3 +401,7 @@ span[id^="recommend-status-Book"] {
 .book h4 {
     text-transform: uppercase;
 }
+
+div[id^="recommend-wrapper-Book"] {
+    display: none;
+}
