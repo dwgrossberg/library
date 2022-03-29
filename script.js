@@ -24,12 +24,21 @@ function Book(title, author, pages, read, recommend) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.recommend = recommend;
+    this.recommend = recommend; 
     this.isRead = function() {
         if (this.read === false) {
             this.read = true;
         } else {
             this.read = false;
+        }
+    }
+    this.isRecommended = function(e) {
+        if (e === 'yes') {
+            this.recommend = 'yes';
+        } else if (e === 'no') {
+            this.recommend = 'no';
+        } else if (e === 'maybeSo') {
+            this.recommend = 'maybeSo';
         }
     }
 }
@@ -109,7 +118,7 @@ function displayLibrary() {
                         `<input type="radio" id="no-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book no">` +
                         '<span class="radio-button-Book no">' + '</span>' + 'No' +
                     '</label>' +
-                    `<label for="maybe-so-Book${myLibrary.indexOf(val)}" class="label maybe-so">` +
+                    `<label for="maybe-so-Book${myLibrary.indexOf(val)}" class="label maybeSo">` +
                         `<input type="radio" id="maybe-so-Book${myLibrary.indexOf(val)}" name="recommend-Book${myLibrary.indexOf(val)}" class="recommend-in-Book maybeSo">` +
                         '<span class="radio-button-Book maybeSo">' + '</span>' + 'Maybe So' +
                     '</label>' +
@@ -145,7 +154,7 @@ function displayLibrary() {
                 recommendYes.checked = true;
             } else if (bookArray[4] === 'no') {
                 recommendNo.checked = true;
-            } else if (bookArray[4] === 'maybe-so') {
+            } else if (bookArray[4] === 'maybeSo') {
                 recommendMaybeSo.checked = true;
             }
 
@@ -155,7 +164,8 @@ function displayLibrary() {
             let recommendMaybeSoLabel = document.querySelector(`label[for="maybe-so-Book${myLibrary.indexOf(val)}"`);
             let labels = [recommendYesLabel, recommendNoLabel, recommendMaybeSoLabel];
             labels.forEach(label => label.addEventListener(('mousedown'), (e) => {
-                console.log(e.target.classList[1]);
+                myLibrary[`${myLibrary.indexOf(val)}`].isRecommended(e.target.classList[1]);
+                console.log(myLibrary[`${myLibrary.indexOf(val)}`].recommend);
             }));
             
 

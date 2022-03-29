@@ -169,7 +169,7 @@ input[type="checkbox"] {
 }
 
 input[name="checkbox"]:checked + .toggle::after {
-    left : 25px; 
+    left: 25px; 
     background-color: aqua;
 }
 
@@ -362,7 +362,7 @@ input[type="radio"]:checked ~ span[class^="radio-button"] {
     background-color: azure;
     font-family: "Lato", sans-serif;
     font-size: clamp(.5rem, 11px, 2rem);
-    padding: 20px 15px 10px 15px;
+    padding: 20px 15px 5px 15px;
     position: relative;
 }
 
