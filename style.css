@@ -17,7 +17,7 @@ body {
 
 .container {
     display: grid;
-    grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(7vw, 50px) minmax(calc(55vw - 15px), 350px);
+    grid-template: minmax(calc(100vh - 50px), 475px) 25px / minmax(calc(35vw - 15px), 250px) minmax(7vw, 50px) minmax(calc(55vw - 15px), 350px);
     gap: 10px;
     min-width: 99vw;
     min-height: 98.5vh;
@@ -572,4 +572,31 @@ span[id^="recommend-status-Book"] {
 
 div[id^="recommend-wrapper-Book"] {
     display: none;
+}
+
+.made-by {
+    font-family: "Lato", sans-serif;
+    color: #343633;
+    grid-area: 2 / 1 / 3 / -1;
+    margin-bottom: -10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.made-by a {
+    text-decoration: none;
+    color: #2b1719;
+}
+
+.made-by img {
+    height: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.made-by img:hover {
+    transform: rotate(-360deg) scale(1.2);
 }
