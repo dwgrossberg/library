@@ -359,7 +359,6 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
 
 .librarian {
     grid: 2 / 1 / 3 / 2;
-    border: darkorange dotted 1px;
     place-self: center;
 }
 
@@ -367,6 +366,56 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
     width: 15vw;
     min-width: 100px;
     cursor: pointer;
+}
+
+p.bubble {
+	position: absolute;
+	width: 200px;
+	text-align: center;
+	line-height: 1.2em;
+	margin: 20px auto;
+	background-color: ghostwhite;
+	border: 3px solid #3c1414;
+	border-radius: 30px;
+	font-family: sans-serif;
+	padding: 15px;
+	font-size: small;
+    top: 350px;
+    left: calc(100px + 15vw);
+    opacity: .9;
+    display: none;
+}
+
+p.bubble:before,
+p.bubble:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+p.thought:before,
+p.thought:after {
+	left: 10px;
+	bottom: -30px;
+	width: 40px;
+	height: 40px;
+	background-color: ghostwhite;
+	border: 3px solid #3c1414;
+	-webkit-border-radius: 28px;
+	-moz-border-radius: 28px;
+	border-radius: 28px;
+
+}
+
+p.thought:after {
+	width: 20px;
+	height: 20px;
+	left: 5px;
+	bottom: -40px;
+	-webkit-border-radius: 18px;
+	-moz-border-radius: 18px;
+	border-radius: 18px;
 }
 
 .ladder {

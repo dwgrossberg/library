@@ -363,4 +363,16 @@ function setBookReadToggle() {
     });
 }
 
-            
+const librarianThoughBubble = document.getElementById('bubble');
+console.log(librarianThoughBubble.style.display);
+librarian.addEventListener('mouseenter', () => {
+    if (librarianThoughBubble.style.display === '') {
+        librarianThoughBubble.style.display = 'flex';
+    } 
+})
+
+librarian.addEventListener('mouseleave', () => {
+    if (librarianThoughBubble.style.display === 'flex') {
+        librarianThoughBubble.style.display = '';
+    } 
+})
