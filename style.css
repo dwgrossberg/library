@@ -19,18 +19,16 @@ body {
     display: grid;
     grid-template: minmax(calc(100vh - 30px), 500px) / minmax(calc(35vw - 15px), 250px) minmax(7vw, 50px) minmax(calc(55vw - 15px), 350px);
     gap: 10px;
-    min-width: 98vw;
-    min-height: 98vh;
-    background-color: ghostwhite;
+    min-width: 99vw;
+    min-height: 98.5vh;
+    background-color: #fff8e7;
     border-radius: 5px;
     padding: 10px;
     justify-content: space-between;
     overflow: hidden;
 }
 
-.help-desk, 
-.ladder,
-.library {
+.ladder {
     outline: blueviolet solid 1px;
 }
 
@@ -45,7 +43,6 @@ body {
 
 .help {
     grid-area: 1 / 1 / 2 / 2;
-    border: forestgreen dotted 1px;
 }
 
 #help {
@@ -53,6 +50,7 @@ body {
     font-size: 24px;
     text-align: center;
     margin: 15px 0 20px 0;
+    text-shadow: .5px .5px #592720;
 }
 
 .deposit-remove {
@@ -64,20 +62,28 @@ body {
 #deposit,
 #remove {
     padding: 10px;
-    margin-bottom: 15px;
+    margin: 0 5px 15px 5px;
     width: 50%;
     font-family: "Lato", sans-serif;
+    font-size: 12px;
     text-align: center;
     color: white;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 #deposit {
-    background-color: green;
+    background-color: #644117;
 }
 
 #remove {
-    background-color: blueviolet;
+    background-color: #a75502;
+}
+
+#deposit:hover,
+#remove:hover {
+    box-shadow: .5px .5px #3c1414;
+    text-decoration: underline;
 }
 
 form {
@@ -89,6 +95,14 @@ form {
     font-family: "Lato", sans-serif;
     font-size: 12px;
     padding: 10px;
+}
+
+#form-deposit input:focus {
+    outline: #644117;
+}
+
+#form-remove input:focus {
+    outline: #a75502;
 }
 
 label {
@@ -290,7 +304,7 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
     width: 100%;
     height: 55px;
     min-width: 0px;
-    background-color: darkgoldenrod;
+    background-color: #ba8759;
     color: white;
     display: flex;
     align-items: center;
@@ -308,10 +322,22 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
     padding: 15px;
     border-radius: 0 13px 13px 0;
     border: none;
-    background-color: bisque;
+    background-color: #ba8759;
     height: 55px;
     width: 40px;
     cursor: pointer;
+    color: white;
+}
+
+#deposit-pseudo-button:hover,
+#deposit-pseudo-button:hover + #deposit-book-button{
+    box-shadow: .5px .5px #3c1414;
+    text-decoration: underline;
+}
+
+#deposit-pseudo-button:hover + #deposit-book-button {
+    box-shadow: .5px .5px #3c1414;
+    text-decoration: underline;
 }
 
 #remove-book-button {
@@ -320,9 +346,15 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
     padding: 15px;
     border-radius: 13px;
     border: none;
-    background-color: bisque;
+    background-color: #ba8759;
     height: 55px;
     cursor: pointer; 
+    color: white;
+}
+
+#remove-book-button:hover {
+    box-shadow: .5px .5px #3c1414;
+    text-decoration: underline;
 }
 
 .librarian {
