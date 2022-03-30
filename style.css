@@ -28,10 +28,6 @@ body {
     overflow: hidden;
 }
 
-.ladder {
-    outline: blueviolet solid 1px;
-}
-
 /* Help desk - lefthand side, including both forms */
 
 .help-desk {
@@ -50,7 +46,7 @@ body {
     font-size: 24px;
     text-align: center;
     margin: 15px 0 20px 0;
-    text-shadow: .5px .5px #592720;
+    text-shadow: .5px .5px #3c1414;
 }
 
 .deposit-remove {
@@ -98,11 +94,25 @@ form {
 }
 
 #form-deposit input:focus {
-    outline: #644117;
+    border: #644117;
 }
 
 #form-remove input:focus {
     outline: #a75502;
+}
+
+#form-deposit input:hover {
+    box-shadow: 0 0 1.5pt 0.5pt #644117;
+}
+#form-deposit input:focus {
+    box-shadow: 0 0 3pt 0.5pt #644117;
+}
+
+#form-remove input:hover {
+    box-shadow: 0 0 1.5pt 0.5pt #a75502;
+}
+#form-remove input:focus {
+    box-shadow: 0 0 3pt 0.5pt #a75502;
 }
 
 label {
@@ -123,7 +133,9 @@ label[for="pages"] {
 
 input {
     padding: 5px 10px;
-
+    outline: none;
+    border: none;
+    box-shadow: 0 0 1pt 0.5pt #f0ead6;
 }
 
 input[type="text"] {
@@ -378,6 +390,9 @@ input[type="radio"]:checked ~ span[class^="radio-button"]::after {
     cursor: pointer;
 }
 
+/* Librarian thought bubble on hover */
+/* Many thanks to Joe Hastings and his bubble thought framwork - https://codepen.io/JoeHastings/pen/gPrPMo */
+
 p.bubble {
 	position: absolute;
 	width: 200px;
@@ -388,7 +403,7 @@ p.bubble {
 	border: 3px solid #3c1414;
 	border-radius: 30px;
 	font-family: sans-serif;
-	padding: 15px;
+	padding: 20px;
 	font-size: small;
     top: calc(150px + 20vh);
     left: calc(50px + 15vw);
@@ -432,10 +447,21 @@ p.thought:after {
     grid-area: 1 / 2 / 2 / 3;
     display: grid;
     grid-template: repeat(10, 1fr);
+    border-left: solid 2px #3c1414;
+    border-right: solid 2px #3c1414;
+    box-shadow: 3px 0 3px -3px #3c1414;
+
 }
 
 .ladder-rung {
-    outline: goldenrod dotted 1px;
+    outline: 1px #3c1414;
+    box-shadow: 1px 1px #3c1414;
+}
+
+.ladder-rung:last-child {
+    outline: none;
+    box-shadow: none;
+    border: none;
 }
 
 /* Library display - righthand side of the page */
