@@ -163,12 +163,17 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: center;
     padding: 5px 10px;
-    background-color: burlywood;
+    background-color: #f0ead6;
     width: 30px;
     height: 15px;
     border-radius: 30px;
     font-size: 9px;
     cursor: pointer;
+}
+
+.toggle:hover {
+    box-shadow: .25px .25px #3c1414;
+
 }
 
 .toggle::after {
@@ -177,14 +182,19 @@ input[type="checkbox"] {
     width: 25px;
     height: 25px;
     border-radius: 30px;
-    background-color: slategrey;
+    background-color: #9f8170;
     left: 0px;
     transition: all 0.3s;
 }
 
+input[name="checkbox"]:checked + .toggle {
+    background-color: #ffdead;
+
+}
+
 input[name="checkbox"]:checked + .toggle::after {
     left: 25px; 
-    background-color: aqua;
+    background-color: #8b4513;
 }
 
 #radio-submit-wrapper {
@@ -293,7 +303,7 @@ span[class^="radio-button"]::after {
 }
 
 input[type="radio"]:checked ~ span[class^="radio-button"] {
-    background-color: #2196F3;
+    background-color: #8b4513;
 }  
 
 input[type="radio"]:checked ~ span[class^="radio-button"]::after {
@@ -380,8 +390,8 @@ p.bubble {
 	font-family: sans-serif;
 	padding: 15px;
 	font-size: small;
-    top: 350px;
-    left: calc(100px + 15vw);
+    top: calc(150px + 20vh);
+    left: calc(50px + 15vw);
     opacity: .9;
     display: none;
 }
@@ -456,11 +466,22 @@ p.thought:after {
     border-radius: 5px;
     width: 140px;
     height: 225px;
-    background-color: azure;
+    background-color: #Fdfcfa;
     font-family: "Lato", sans-serif;
+    font-weight: 400;
     font-size: clamp(.5rem, 11px, 2rem);
     padding: 20px 15px 5px 15px;
     position: relative;
+    border: 3px double #3c1414;
+}
+
+.book:hover {
+    box-shadow: .5px .5px #3c1414;
+    background-color: #fff;
+}
+
+.book:hover h3 {
+    text-decoration: underline;
 }
 
 span[id^="recommend-status-Book"] {
