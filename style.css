@@ -43,7 +43,7 @@ body {
 
 #help {
     font-family: "Pacifico", cursive;
-    font-size: 24px;
+    font-size: 26px;
     text-align: center;
     margin: 15px 0 20px 0;
     text-shadow: .5px .5px #3c1414;
@@ -477,8 +477,8 @@ p.thought:after {
 
 .top-shelf {
     grid-area: 1 / 1 / 2 / -1;
-    box-shadow: 1px 1px #3c1414;
-    border-radius: 3px;
+    box-shadow: 1px 1px 2px #3c1414;
+    border-radius: 20px 0;
     background-color: #ffefd5;
     width: 100%;
     margin-bottom: 15px;
