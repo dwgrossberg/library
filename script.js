@@ -19,28 +19,30 @@ let myLibraryHistory = [];
 let myBooks = [];
 
 // Book Object constructor
-function Book(title, author, pages, read, recommend) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.recommend = recommend; 
-    this.isRead = function() {
-        if (this.read === false) {
-            this.read = true;
-        } else {
-            this.read = false;
+class Book {
+    constructor(title, author, pages, read, recommend) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.recommend = recommend; 
+        this.isRead = function() {
+            if (this.read === false) {
+                this.read = true;
+            } else {
+                this.read = false;
+            }
         }
-    }
-    this.isRecommended = function(e) {
-        if (e === 'yes') {
-            this.recommend = 'yes';
-        } else if (e === 'no') {
-            this.recommend = 'no';
-        } else if (e === 'maybeSo') {
-            this.recommend = 'maybeSo';
-        } else if (e === 'undefined') {
-            this.recommend = undefined;
+        this.isRecommended = function(e) {
+            if (e === 'yes') {
+                this.recommend = 'yes';
+            } else if (e === 'no') {
+                this.recommend = 'no';
+            } else if (e === 'maybeSo') {
+                this.recommend = 'maybeSo';
+            } else if (e === 'undefined') {
+                this.recommend = undefined;
+            }
         }
     }
 }
